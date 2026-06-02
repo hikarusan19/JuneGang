@@ -3,36 +3,209 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Access Passcode</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Secure Access Terminal</title>
+  <style>
+    /* --- CSS STYLES --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, #f8fafc, #cbd5e1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    /* Card & Animations */
+    .login-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 32px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      transition: transform 0.3s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+
+    .shake { animation: shake 0.4s ease-in-out; }
+
+    /* Icon Styling */
+    .lock-icon {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f1f5f9;
+      border-radius: 50%;
+    }
+
+    .lock-icon .emoji { font-size: 1.8rem; z-index: 2; }
+
+    .icon-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid #3b82f6;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    /* Typography */
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.025em;
+    }
+
+    .sub {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Input Field */
+    .passcode-field {
+      width: 100%;
+      padding: 1.2rem;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 0.8rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 16px;
+      outline: none;
+      text-align: center;
+      transition: all 0.2s ease;
+      background: #fff;
+      color: #1e293b;
+    }
+
+    .passcode-field:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+
+    .passcode-field::placeholder {
+      letter-spacing: 0.4rem;
+      color: #cbd5e1;
+    }
+
+    /* Status Message */
+    .status {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.8rem;
+      border-radius: 12px;
+      color: #64748b;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .status-error { color: #dc2626; background: #fef2f2; }
+    .status-success { color: #16a34a; background: #f0fdf4; }
+
+    /* Hints Section */
+    .extra-links {
+      margin-top: 2rem;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 1.2rem;
+    }
+
+    .extra-links summary {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #94a3b8;
+      cursor: pointer;
+      list-style: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .codes-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 1rem;
+      justify-items: center;
+    }
+
+    .code-item {
+      background: #f8fafc;
+      padding: 1rem 1.2rem;
+      border-radius: 18px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      border: 1px solid #e2e8f0;
+      text-align: left;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .code-item span {
+      display: block;
+      color: #94a3b8;
+      margin-bottom: 2px;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body>
-<div class="login-card">
-  <div class="lock-icon">🔐</div>
-  <h2>Enter Passcode</h2>
-  <div class="sub">8-digit code required</div>
 
-  <!-- single line passcode input -->
+<div class="login-card" id="card">
+  <div class="lock-icon">
+    <div class="icon-ring"></div>
+    <span class="emoji">🔐</span>
+  </div>
+  
+  <h2>Secure Access</h2>
+  <div class="sub">Enter your 8-digit authorization code</div>
+
   <input type="password" id="passcodeInput" class="passcode-field" placeholder="········" maxlength="8" inputmode="numeric" autocomplete="off">
 
-  <!-- status message -->
-  <div id="statusMsg" class="status">Enter 8-digit code</div>
+  <div id="statusMsg" class="status">Waiting for input...</div>
 
-  <!-- minimal helper (collapsible, discreet) -->
   <details class="extra-links">
-    <summary>ℹ️ access codes</summary>
+    <summary>Password Note</summary>
     <div class="codes-list">
-      <span>06121999 → Ezra/index.html</span>
-      <span>15082001 → Ezra/archive1.html</span>
-      <span>22111987 → Ezra/notes.html</span>
-      <span>03032020 → Ezra/dashboard.html</span>
+      <div class="code-item"><span>Hint</span>Birthday : Month + Day + Year</div>
     </div>
   </details>
 </div>
 
 <script>
+  /* --- JAVASCRIPT LOGIC --- */
   (function() {
-    // ----- simple route map (8-digit -> target page) -----
     const ROUTES = {
       "06121999": "Ezra/index.html",
       "06181996": "Erica/index.html",
@@ -42,110 +215,70 @@
 
     const passInput = document.getElementById('passcodeInput');
     const statusDiv = document.getElementById('statusMsg');
+    const card = document.getElementById('card');
 
-    // helper: update status message
-    function setStatus(text, isError = false, isSuccess = false) {
+    function setStatus(text, type = '') {
       statusDiv.textContent = text;
-      statusDiv.classList.remove('status-error', 'status-success');
-      if (isError) statusDiv.classList.add('status-error');
-      if (isSuccess) statusDiv.classList.add('status-success');
-    }
-
-    // reset input field
-    function resetInput() {
-      passInput.value = '';
-      setStatus("Enter 8-digit code", false);
-      passInput.focus();
-    }
-
-    // attempt to validate and redirect
-    function attemptUnlock() {
-      let code = passInput.value.trim();
+      statusDiv.className = 'status';
+      if (type) statusDiv.classList.add(`status-${type}`);
       
-      // remove any non-digit characters just in case
-      code = code.replace(/\D/g, '');
-      
-      if (code.length !== 8) {
-        setStatus(`✗ Need exactly 8 digits (you entered ${code.length})`, true);
-        // auto clear after error for better UX
-        setTimeout(() => {
-          if (passInput.value.length !== 8) {
-            // only reset if still invalid
-            resetInput();
-          }
-        }, 1200);
-        return false;
+      if (type === 'error') {
+        card.classList.add('shake');
+        setTimeout(() => card.classList.remove('shake'), 400);
       }
+    }
+
+    function attemptUnlock() {
+      const code = passInput.value.replace(/\D/g, '');
       
-      // check if code exists in routes
+      if (code.length < 8) return;
+
       const target = ROUTES[code];
       if (target) {
-        setStatus(`✓ Access granted. Redirecting...`, false, true);
-        // disable input during redirect to prevent double submit
+        setStatus("Access Granted. Redirecting...", "success");
         passInput.disabled = true;
+        // Subtle delay for visual confirmation before redirect
         setTimeout(() => {
           window.location.href = target;
-        }, 400);
-        return true;
+        }, 600);
       } else {
-        setStatus(`✗ Invalid code "${code}". Try again.`, true);
-        resetInput();
-        return false;
+        setStatus("Invalid Authorization Code", "error");
+        // Clear input after a short delay so they can see the error
+        setTimeout(() => {
+          passInput.value = '';
+          setStatus("Waiting for input...");
+          passInput.focus();
+        }, 1200);
       }
     }
 
-    // auto-submit when 8 digits are entered
-    function onInputHandler() {
-      let raw = passInput.value;
-      // sanitize: allow only digits
-      let sanitized = raw.replace(/\D/g, '');
-      if (sanitized.length > 8) sanitized = sanitized.slice(0, 8);
-      if (sanitized !== raw) {
-        passInput.value = sanitized;
-      }
+    // Input monitoring
+    passInput.addEventListener('input', (e) => {
+      // Clean non-digits
+      let val = e.target.value.replace(/\D/g, '').slice(0, 8);
+      e.target.value = val;
       
-      // update status hint when typing
-      if (sanitized.length === 0) {
-        setStatus("Enter 8-digit code", false);
-      } else if (sanitized.length < 8) {
-        setStatus(`Enter ${8 - sanitized.length} more digit(s)`, false);
-      }
-      
-      // auto-submit when exactly 8 digits
-      if (sanitized.length === 8) {
+      if (val.length > 0 && val.length < 8) {
+        setStatus(`Required: ${8 - val.length} more digits`);
+      } else if (val.length === 8) {
         attemptUnlock();
+      } else {
+        setStatus("Waiting for input...");
       }
-    }
+    });
 
-    // handle paste event: ensure only digits and auto-trigger
-    function onPasteHandler(e) {
-      e.preventDefault();
-      let pastedData = (e.clipboardData || window.clipboardData).getData('text');
-      if (!pastedData) return;
-      let digits = pastedData.replace(/\D/g, '');
-      if (digits.length > 8) digits = digits.slice(0, 8);
-      passInput.value = digits;
-      // trigger input event manually
-      onInputHandler();
-    }
-
-    // handle keydown for Enter and backspace/delete behavior
-    function onKeydownHandler(e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        attemptUnlock();
-      }
-      // optional: if user presses backspace on empty field, just keep clean
-    }
-
-    // initialize event listeners
-    passInput.addEventListener('input', onInputHandler);
-    passInput.addEventListener('paste', onPasteHandler);
-    passInput.addEventListener('keydown', onKeydownHandler);
+    // Auto-focus on load
+    window.onload = () => passInput.focus();
     
-    // initial focus
-    passInput.focus();
+    // Safety check: ensure only numbers are pasted
+    passInput.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const pasteData = (e.clipboardData || window.clipboardData).getData('text');
+      passInput.value = pasteData.replace(/\D/g, '').slice(0, 8);
+      if (passInput.value.length === 8) attemptUnlock();
+    });
   })();
 </script>
+
 </body>
 </html>
