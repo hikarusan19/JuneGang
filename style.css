@@ -1,0 +1,121 @@
+﻿* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.login-card {
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem 1.8rem 2.2rem;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.lock-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.sub {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-bottom: 1.8rem;
+}
+
+.passcode-field {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: 'Courier New', 'Fira Mono', monospace;
+  text-align: center;
+  letter-spacing: 6px;
+  border: 2px solid #cbd5e1;
+  border-radius: 20px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  transition: all 0.15s ease;
+}
+
+.passcode-field:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.passcode-field::placeholder {
+  letter-spacing: 2px;
+  font-size: 1rem;
+  color: #94a3b8;
+  font-weight: normal;
+}
+
+.status {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  padding: 0.65rem;
+  border-radius: 60px;
+  background: #f1f5f9;
+  color: #334155;
+  transition: all 0.15s;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-error {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.extra-links {
+  margin-top: 1.8rem;
+  font-size: 0.7rem;
+  color: #94a3b8;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1rem;
+}
+
+.extra-links summary {
+  cursor: pointer;
+  color: #64748b;
+  display: inline-block;
+  font-size: 0.7rem;
+}
+
+.codes-list {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  font-family: monospace;
+  font-size: 0.7rem;
+}

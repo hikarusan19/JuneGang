@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>✨ Erica's Birthday | Modern Pink Celebration</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(125deg, #ffdde1 0%, #ffb7c5 50%, #ff8da1 100%);
+      font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+      padding: 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* floating abstract shapes */
+    .shape-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .shape-bg div {
+      position: absolute;
+      background: rgba(255,255,240,0.2);
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+    .shape1 { width: 300px; height: 300px; top: -100px; left: -100px; background: #ffb3c6; }
+    .shape2 { width: 400px; height: 400px; bottom: -150px; right: -150px; background: #ff99bb; }
+    .shape3 { width: 250px; height: 250px; top: 40%; left: 70%; background: #ffc0d0; }
+
+    /* music controls - minimal floating */
+    .music-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(255,255,245,0.9);
+      backdrop-filter: blur(12px);
+      border-radius: 40px;
+      padding: 8px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      z-index: 200;
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    .music-float button, .music-float .vol-icon {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #c43a6b;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .music-float input {
+      width: 80px;
+      accent-color: #ff66a5;
+    }
+    .vol-icon span { font-size: 0.8rem; }
+
+    /* main glass container */
+    .glass-modern {
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* hero section - different shape */
+    .hero-modern {
+      background: rgba(255, 250, 245, 0.85);
+      backdrop-filter: blur(15px);
+      border-radius: 60px;
+      padding: 2rem 2rem 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+      border: 1px solid rgba(255,255,245,0.7);
+    }
+    .floating-icon {
+      font-size: 3.8rem;
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-12px); }
+    }
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      background: linear-gradient(115deg, #e65c8c, #ff95b9);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin: 0.3rem 0;
+      letter-spacing: -0.3px;
+    }
+    .hero-sub {
+      color: #b64b76;
+      max-width: 550px;
+      margin: 0.6rem auto;
+      font-size: 1rem;
+    }
+
+    /* surprise card (gift trigger) - totally new layout */
+    .surprise-card {
+      background: #fff2f5ee;
+      backdrop-filter: blur(12px);
+      border-radius: 48px;
+      padding: 1.6rem 2rem;
+      margin: 2rem 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      border: 1px solid #ffe0e8;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    }
+    .surprise-text h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #da4a7c;
+    }
+    .surprise-text p {
+      color: #ac4570;
+      font-size: 0.9rem;
+    }
+    .surprise-btn {
+      background: linear-gradient(105deg, #ff8dae, #ff6b97);
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 6px 14px rgba(255,105,150,0.3);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .surprise-btn:hover { transform: scale(1.02); background: linear-gradient(105deg, #ff7ba0, #ff5888); }
+
+    /* gallery - masonry style modern */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .gallery-item {
+      background: rgba(255,248,245,0.8);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      border: 1px solid #ffe0ea;
+    }
+    .gallery-item:hover { transform: translateY(-6px); background: rgba(255,255,250,0.95); }
+    .img-placeholder {
+      aspect-ratio: 1/1;
+      background: linear-gradient(125deg, #ffe4ed, #ffd2df);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 2.8rem;
+      color: #e56b96;
+    }
+    .img-placeholder span:last-child {
+      font-size: 0.7rem;
+      background: rgba(255,255,240,0.7);
+      padding: 4px 12px;
+      border-radius: 40px;
+      color: #ac5278;
+    }
+    .gallery-caption {
+      padding: 0.9rem;
+      font-weight: 600;
+      color: #bd5982;
+      text-align: center;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      cursor: zoom-in;
+      display: block;
+    }
+
+    /* hover badge that says 'View' (pink theme) */
+    .gallery-item::after {
+      content: 'View';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      background: linear-gradient(90deg, #ff8da1 0%, #ff66a5 100%);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      transition: opacity 0.18s ease, transform 0.18s cubic-bezier(.2,.9,.2,1);
+      pointer-events: none;
+      z-index: 30;
+      box-shadow: 0 8px 22px rgba(255,102,165,0.18);
+    }
+    .gallery-item:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
+
+    /* extra gallery: 5 columns with responsive fallbacks */
+    .extra-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    @media (max-width: 1100px) {
+      .extra-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .extra-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* tabs / navigation - pill style */
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin: 1rem 0 1.5rem;
+    }
+    .tab-btn {
+      background: rgba(255,250,245,0.8);
+      backdrop-filter: blur(5px);
+      border: 1px solid #ffbfd0;
+      padding: 0.6rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      color: #c14573;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.9rem;
+    }
+    .tab-btn.active-tab {
+      background: #ff9bbd;
+      color: white;
+      border-color: #ff9bbd;
+      box-shadow: 0 4px 12px rgba(255,105,150,0.2);
+    }
+
+    /* content panels */
+    .content-panel {
+      display: none;
+      background: rgba(255, 250, 248, 0.85);
+      backdrop-filter: blur(14px);
+      border-radius: 48px;
+      padding: 1.8rem;
+      margin-top: 0.5rem;
+      border: 1px solid rgba(255,225,235,0.9);
+    }
+    .content-panel.active-panel {
+      display: block;
+      animation: fadeSlide 0.35s ease;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Wishes list - modern bubbles */
+    .wishes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .wish-bubble {
+      background: #ffffffcc;
+      border-radius: 50px;
+      padding: 0.7rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #ffbfcf;
+      transition: 0.2s;
+    }
+    .wish-bubble:hover { background: #fff0f5; transform: translateX(6px);}
+    .wish-person {
+      font-weight: 700;
+      color: #ba4e7a;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .envelope-btn {
+      background: #ffa5c2;
+      border: none;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .envelope-btn:hover { background: #e76f9a; transform: scale(0.96); }
+
+    /* video / gallery extra modern */
+    .video-card-modern {
+      background: #fff2f7;
+      border-radius: 2rem;
+      padding: 1.2rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .badge-pink {
+      background: #ffc0d0;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+      font-size: 0.8rem;
+    }
+
+    /* envelope modal - refined */
+    .modal-envelope {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.2s;
+    }
+    .modal-envelope.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .envelope-paper {
+      background: #fffafc;
+      max-width: 460px;
+      width: 90%;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: 0 35px 45px rgba(0,0,0,0.2);
+      transform: scale(0.9);
+      transition: transform 0.2s;
+    }
+    .modal-envelope.active .envelope-paper {
+      transform: scale(1);
+    }
+    .envelope-top {
+      background: linear-gradient(115deg, #ff87ae, #ffb0c7);
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+    .close-modal {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 1.7rem;
+      cursor: pointer;
+      color: white;
+      background: none;
+      border: none;
+    }
+    .msg-content {
+      padding: 2rem 1.8rem;
+      background: #fff7fa;
+      text-align: center;
+    }
+    .msg-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #a13e65;
+      margin: 1rem 0;
+    }
+    .signature {
+      text-align: right;
+      font-weight: 600;
+      color: #e75a8c;
+      margin-top: 1rem;
+    }
+
+    /* gift video modal */
+    .gift-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000dd;
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 250;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.2s;
+    }
+    .gift-modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .gift-container {
+      background: #fff4f9;
+      border-radius: 2rem;
+      max-width: 700px;
+      width: 90%;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid #ffacc6;
+    }
+    .gift-container video {
+      width: 100%;
+      border-radius: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    /* image modal / lightbox */
+    .image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.75);
+      z-index: 1000;
+      padding: 2rem;
+    }
+    .image-modal.active { display: flex; }
+    .image-modal-content {
+      max-width: 92vw;
+      max-height: 92vh;
+      background: transparent;
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+    }
+    .image-modal img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 12px;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .image-modal-caption {
+      margin-top: 0.6rem;
+      color: #ffd6e6;
+      font-weight: 600;
+    }
+    .image-modal-close {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background: #fff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      font-size: 1.1rem;
+      color: #c14573;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #b84c76;
+      font-size: 0.7rem;
+    }
+    @media (max-width: 680px) {
+      .surprise-card { flex-direction: column; text-align: center; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="shape-bg">
+  <div class="shape1"></div>
+  <div class="shape2"></div>
+  <div class="shape3"></div>
+</div>
+
+<!-- music controls -->
+<div class="music-float">
+  <button id="musicToggleBtn">🎵 <span id="musicStatusText">Play</span></button>
+  <div class="vol-icon">🔊 <input type="range" id="volumeRange" min="0" max="100" value="65"></div>
+</div>
+
+<audio id="bgAudio" loop preload="auto">
+  <source src="../Extra/HappyBirthday.mp3" type="audio/mpeg">
+</audio>
+
+<!-- gift video modal -->
+<div id="giftVideoModal" class="gift-modal">
+  <div class="gift-container">
+    <button id="closeVideoBtn" style="float:right; background:none; border:none; font-size:1.5rem; cursor:pointer;">✕</button>
+    <h3 style="color:#e55a8a;">🎁 Your Birthday Gift 🎁</h3>
+    <video id="giftVideoPlayer" controls preload="metadata">
+      <source src="./SpecialMessage/18egg.mp4" type="video/mp4">
+    </video>
+    <p style="color:#b34c78;">💝 Special video for you, Erica! 💝</p>
+  </div>
+</div>
+
+<!-- envelope modal for wishes -->
+<div id="envelopeModalModern" class="modal-envelope">
+  <div class="envelope-paper">
+    <div class="envelope-top">
+      <button class="close-modal" id="closeEnvelopeModern">✕</button>
+      <span style="font-size:2rem;">💌✨</span>
+      <h3 id="modalPersonName" style="color:white; margin-top:6px;">Name</h3>
+    </div>
+    <div class="msg-content">
+      <div id="modalMessage" class="msg-text"></div>
+      <div id="modalSignature" class="signature"></div>
+    </div>
+  </div>
+</div>
+
+<main class="glass-modern">
+  <!-- hero -->
+  <div class="hero-modern">
+    <div class="floating-icon">🎀🎂🌸</div>
+    <h1>HAPPY BIRTHDAY <br> ERICA AGUIRRE</h1>
+    <div class="hero-sub">✨ You deserve all the sparkle in the world ✨<br> A day made of love, laughter and sweet surprises.</div>
+  </div>
+
+  <!-- surprise ready card (new design) -->
+  <div class="surprise-card">
+    <div class="surprise-text">
+      <h3>🌸 Ready for a little magic? 🌸</h3>
+      <p>Click the button to reveal a special birthday video just for you!</p>
+    </div>
+    <button id="openGiftBtn" class="surprise-btn">🎁 Open Surprise 🎁</button>
+  </div>
+
+  <!-- gallery modern -->
+  <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap:wrap;">
+    <h2 style="color:#c84c78; font-weight:600;">📸 birthday snapshots</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="Image/Day_6.jpg" alt="Day_6" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">Day_6</div></div>
+    <div class="gallery-item"><img src="Image/day9.jpg" alt="day9" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">day9</div></div>
+    <div class="gallery-item"><img src="Image/day8.jpg" alt="day8" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">day8</div></div>
+
+  </div>
+
+  <!-- modern tab bar -->
+  <div class="tab-bar">
+    <button class="tab-btn active-tab" data-tab="tab1">💌 Love Notes</button>
+    <button class="tab-btn" data-tab="tab2">🎬 Birthday Video</button>
+    <button class="tab-btn" data-tab="tab3">📷 Extra Gallery</button>
+  </div>
+
+  <!-- tab 1: wishes with envelopes -->
+  <div id="tab1" class="content-panel active-panel">
+    <div class="wishes-list" id="wishesDynamic"></div>
+  </div>
+
+  <!-- tab 2: video info (modern) -->
+  <div id="tab2" class="content-panel">
+    <div class="video-card-modern">
+      <span class="badge-pink">🎥 Exclusive</span>
+      <h3 style="margin: 0.8rem 0; color:#c4507c;">🎀 Birthday Video Message 🎀</h3>
+      <p>Press the "Open Surprise" button above to watch a heartfelt video made especially for you!</p>
+      <div style="margin-top: 1rem;">✨🎂✨</div>
+    </div>
+  </div>
+
+  <!-- tab 3: extra memories -->
+  <div id="tab3" class="content-panel">
+    <div class="extra-grid">
+      <div class="gallery-item"><img src="Image/Day_6.jpg" alt="Day_6" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">Day_6</div></div>
+      <div class="gallery-item"><img src="Image/day9.jpg" alt="day9" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">day9</div></div>
+      <div class="gallery-item"><img src="Image/day8.jpg" alt="day8" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">day8</div></div>
+      <div class="gallery-item"><img src="Image/Day7.jpg" alt="Day7" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">Day7</div></div>
+      <div class="gallery-item"><img src="Image/Day5.jpg" alt="Day5" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">Day5</div></div>
+      <div class="gallery-item"><img src="Image/day4.jpg" alt="day4" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">day4</div></div>
+      <div class="gallery-item"><img src="Image/day12.jpg" alt="day12" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">day12</div></div>
+      <div class="gallery-item"><img src="Image/day11.jpg" alt="day11" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">day11</div></div>
+      <div class="gallery-item"><img src="Image/Day10.jpg" alt="Day10" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">Day10</div></div>
+      <div class="gallery-item"><img src="Image/day1.jpg" alt="day1" style="width:100%; height:130px; object-fit:cover;"><div class="gallery-caption">day1</div></div>
+    </div>
+  </div>
+
+  <footer>🌸 Made with love — Happy Birthday Erica! 🌸<br>💖 May your day be as wonderful as you 💖</footer>
+</main>
+
+<!-- Image Lightbox Modal -->
+<div id="imageModal" class="image-modal" aria-hidden="true">
+  <div class="image-modal-content">
+    <div class="image-modal-close" id="imageModalClose">✕</div>
+    <img id="modalImg" src="" alt="">
+    <div class="image-modal-caption" id="modalCaption"></div>
+  </div>
+</div>
+
+<script>
+  // --- WISHES DATA (same messages for Erica) ---
+  const wishesErica = [
+    { name: "👩‍👧 Mom", message: "Happy Birthday, my precious Erica! You are my sunshine, my joy, and my everything. May your life be as beautiful as your smile. I love you endlessly! 💖", signature: "— Love, Mom" },
+    { name: "👨‍👦 Dad", message: "To my beautiful daughter Erica, Happy Birthday! Watching you grow into the amazing woman you are today fills my heart with pride. Keep shining bright! 🎉", signature: "— Dad" },
+    { name: "👧 Sister", message: "Happy Birthday to the best sister in the world! Thanks for all the laughs, secrets, and late-night talks. You're my role model and best friend! 🎀✨", signature: "— Your sis" },
+    { name: "👴 Grandpa", message: "Happy Birthday, sweet Erica! You bring so much light into our family. May your days be filled with happiness and your heart with love. 🎈", signature: "— Grandpa" },
+    { name: "👵 Grandma", message: "To my darling granddaughter, sending you the warmest hugs and sweetest kisses on your birthday. May God bless you abundantly! 💕", signature: "— Grandma" },
+    { name: "🧑‍🤝‍🧑 Best Friend", message: "Erica! Happy Birthday, bestie! Thank you for being the most amazing friend anyone could ask for. Let's make this year unforgettable! 👯‍♀️🔥", signature: "— Your BFF" },
+    { name: "👩‍🎨 Friend", message: "Happy Birthday, gorgeous! You light up every room you enter. Wishing you nothing but success, love, and happiness today and always! 🌟", signature: "— Your friend" }
+  ];
+
+  const wishesContainer = document.getElementById('wishesDynamic');
+  function renderWishes() {
+    wishesContainer.innerHTML = '';
+    wishesErica.forEach((w, idx) => {
+      const bubble = document.createElement('div');
+      bubble.className = 'wish-bubble';
+      bubble.innerHTML = `<div class="wish-person"><span>💌</span> ${w.name}</div>
+                          <button class="envelope-btn" data-index="${idx}">📬 Open Envelope</button>`;
+      wishesContainer.appendChild(bubble);
+    });
+    document.querySelectorAll('.envelope-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const i = parseInt(btn.getAttribute('data-index'));
+        openEnvelopeModal(i);
+      });
+    });
+  }
+  renderWishes();
+
+  const envelopeModal = document.getElementById('envelopeModalModern');
+  const closeEnvelope = document.getElementById('closeEnvelopeModern');
+  const modalName = document.getElementById('modalPersonName');
+  const modalMsg = document.getElementById('modalMessage');
+  const modalSig = document.getElementById('modalSignature');
+  function openEnvelopeModal(index) {
+    const w = wishesErica[index];
+    modalName.innerText = w.name;
+    modalMsg.innerText = w.message;
+    modalSig.innerText = w.signature;
+    envelopeModal.classList.add('active');
+  }
+  closeEnvelope.addEventListener('click', () => envelopeModal.classList.remove('active'));
+  envelopeModal.addEventListener('click', (e) => { if(e.target === envelopeModal) envelopeModal.classList.remove('active'); });
+
+  // music & volume logic
+  const audio = document.getElementById('bgAudio');
+  const musicToggle = document.getElementById('musicToggleBtn');
+  const musicSpan = document.getElementById('musicStatusText');
+  const volumeSlider = document.getElementById('volumeRange');
+  let isPlaying = false;
+  function startMusic() {
+    audio.play().then(() => { isPlaying = true; musicSpan.innerText = 'Pause'; }).catch(()=>{ musicSpan.innerText = 'Play'; isPlaying=false; });
+  }
+  function pauseMusic() { audio.pause(); isPlaying = false; musicSpan.innerText = 'Play'; }
+  musicToggle.addEventListener('click', () => { isPlaying ? pauseMusic() : startMusic(); });
+  volumeSlider.addEventListener('input', (e) => { audio.volume = e.target.value / 100; });
+  audio.loop = true; audio.volume = 0.65; volumeSlider.value = 65;
+  startMusic();
+  document.body.addEventListener('click', function initAudio() { if(!isPlaying) startMusic(); }, { once: true });
+
+  // gift / video modal with lower bg music volume
+  const giftModal = document.getElementById('giftVideoModal');
+  const openGift = document.getElementById('openGiftBtn');
+  const closeVideo = document.getElementById('closeVideoBtn');
+  const giftVideo = document.getElementById('giftVideoPlayer');
+  let originalVol = audio.volume;
+  let volLowered = false;
+  function lowerVolume() { if(!volLowered) { originalVol = audio.volume; audio.volume = 0.12; volLowered = true; } }
+  function restoreVolume() { if(volLowered) { audio.volume = originalVol; volLowered = false; } }
+  function showGift() {
+    lowerVolume();
+    giftModal.classList.add('active');
+    giftVideo.play().catch(e=>console.log);
+  }
+  function closeGiftModal() {
+    giftModal.classList.remove('active');
+    giftVideo.pause(); giftVideo.currentTime = 0;
+    restoreVolume();
+  }
+  openGift.addEventListener('click', showGift);
+  closeVideo.addEventListener('click', closeGiftModal);
+  giftModal.addEventListener('click', (e) => { if(e.target === giftModal) closeGiftModal(); });
+  giftVideo.addEventListener('ended', () => restoreVolume());
+
+  // confetti effect (soft)
+  function createSoftConfetti() {
+    for(let i=0;i<70;i++) {
+      let conf = document.createElement('div');
+      conf.style.position = 'fixed';
+      conf.style.width = Math.random()*8+5+'px';
+      conf.style.height = Math.random()*12+6+'px';
+      conf.style.background = `hsl(${Math.random()*40 + 320}, 80%, 70%)`;
+      conf.style.left = Math.random()*100+'%';
+      conf.style.top = '-20px';
+      conf.style.opacity = '0.8';
+      conf.style.pointerEvents = 'none';
+      conf.style.zIndex = '999';
+      conf.style.borderRadius = '50%';
+      conf.style.animation = `fallConfetti ${Math.random()*2+2}s linear forwards`;
+      document.body.appendChild(conf);
+      setTimeout(()=>conf.remove(), 3000);
+    }
+  }
+  const styleSheet = document.createElement("style");
+  styleSheet.textContent = `@keyframes fallConfetti { 0% { transform: translateY(0) rotate(0deg); opacity:1; } 100% { transform: translateY(100vh) rotate(360deg); opacity:0; } }`;
+  document.head.appendChild(styleSheet);
+  createSoftConfetti();
+  setInterval(createSoftConfetti, 7000);
+
+  // tab switching
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.content-panel');
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab');
+      tabs.forEach(b => b.classList.remove('active-tab'));
+      btn.classList.add('active-tab');
+      panels.forEach(panel => panel.classList.remove('active-panel'));
+      document.getElementById(tabId).classList.add('active-panel');
+    });
+  });
+
+  // --- IMAGE LIGHTBOX FOR EXTRA GALLERY ---
+  const imageModal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImg');
+  const modalCaption = document.getElementById('modalCaption');
+  const modalClose = document.getElementById('imageModalClose');
+
+  function openImageModal(src, caption) {
+    modalImg.src = src;
+    modalImg.alt = caption || '';
+    modalCaption.textContent = caption || '';
+    imageModal.classList.add('active');
+    imageModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeImageModal() {
+    imageModal.classList.remove('active');
+    imageModal.setAttribute('aria-hidden', 'true');
+    modalImg.src = '';
+    modalCaption.textContent = '';
+    document.body.style.overflow = '';
+  }
+
+  // attach to thumbnails in tab3 and main gallery
+  document.querySelectorAll('.gallery-grid img, #tab3 .gallery-item img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', (e) => {
+      const src = img.getAttribute('src');
+      const caption = img.getAttribute('alt') || img.closest('.gallery-item')?.querySelector('.gallery-caption')?.textContent || '';
+      openImageModal(src, caption);
+    });
+  });
+
+  // close handlers
+  modalClose.addEventListener('click', closeImageModal);
+  imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal) closeImageModal();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeImageModal(); });
+</script>
+</body>
+</html>
