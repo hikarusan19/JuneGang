@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎂 Happy Birthday Ezra Aguirre 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>🎂 Crimson & Black Birthday — Ezra Aguirre 🎉</title>
 <link rel="stylesheet" href="style.css?v=1.0">
 </head>
 <body>
@@ -33,7 +33,7 @@
     <div class="video-container">
       <video id="giftVideo" class="birthday-video" controls controlsList="nodownload" preload="metadata">
         <source src="../Extra/birthday_video.mp4" type="video/mp4">
-        Your browser does not support the video tag. Please upload a video file named "birthday_video.mp4" in the Extra folder.
+        Your browser does not support the video tag.
       </video>
     </div>
     <div class="video-placeholder-note">
@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <!-- READY CARD - Are you Ready design -->
+  <!-- READY CARD - Are you Ready design (crimson) -->
   <div class="ready-card">
     <div class="ready-title">🎁 Are you ready? 🎁</div>
     <div class="ready-description">
@@ -125,43 +125,41 @@
     <button class="page-btn" data-page="page3">🎁 Memory Gallery</button>
   </div>
 
-  <!-- Page 1: Wishes Panel with Name List & Envelope Modal -->
+  <!-- Page 1: Wishes Panel -->
   <div id="page1" class="page-panel">
     <div class="page-title">💌 Heartfelt Wishes for Ezra</div>
-    <div class="wishes-grid" id="wishesListContainer">
-      <!-- Dynamic wishes list will be populated here -->
-    </div>
+    <div class="wishes-grid" id="wishesListContainer"></div>
   </div>
 
   <!-- Page 2: Video Album Page -->
   <div id="page2" class="page-panel">
     <div class="page-title">🎬 Birthday Video Album</div>
     <div style="text-align: center; padding: 1rem;">
-      <div class="video-placeholder-note" style="font-size: 1rem; background: #4a5d23;">
+      <div class="video-placeholder-note" style="font-size: 1rem; background:#2e0909;">
         🎥 Click "Yes, I'm ready!" above to watch the special birthday video! 🎁
       </div>
     </div>
   </div>
 
-  <!-- Page 3: Extra Memories / Picture placeholder -->
+  <!-- Page 3: Extra Memories -->
   <div id="page3" class="page-panel">
     <div class="page-title">📷 Extra Sweet Memories</div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; margin-top: 1rem;">
-      <div class="photo-card" style="background:#2a351a;">
+      <div class="photo-card" style="background:#160202;">
         <div class="picture-placeholder" style="height:150px;">
           <div class="placeholder-icon">📸</div>
           <div class="placeholder-text">[ Photo ]</div>
         </div>
         <div class="photo-caption">Funny moment</div>
       </div>
-      <div class="photo-card" style="background:#2a351a;">
+      <div class="photo-card" style="background:#160202;">
         <div class="picture-placeholder" style="height:150px;">
           <div class="placeholder-icon">🎂</div>
           <div class="placeholder-text">[ Photo ]</div>
         </div>
         <div class="photo-caption">Cake time</div>
       </div>
-      <div class="photo-card" style="background:#2a351a;">
+      <div class="photo-card" style="background:#160202;">
         <div class="picture-placeholder" style="height:150px;">
           <div class="placeholder-icon">🎈</div>
           <div class="placeholder-text">[ Photo ]</div>
@@ -178,7 +176,7 @@
 </div>
 
 <script>
-  // --- WISHES DATA (Name List with Messages) ---
+  // WISHES DATA
   const wishesData = [
     { name: "👩‍👧 Mom", message: "Happy Birthday, my dearest Ezra! Watching you grow has been my greatest joy. May your year be filled with endless blessings and happiness. I love you more than words can say! 💖", signature: "— Love, Mom" },
     { name: "👨‍👦 Dad", message: "To my amazing son, Happy Birthday! Proud of the person you've become. Keep chasing your dreams and never stop smiling. Have a fantastic year ahead! 🎉", signature: "— Dad" },
@@ -189,9 +187,7 @@
     { name: "👩‍🎨 Friend Jessica", message: "Happy Birthday, Ezra! You light up every room you enter. Wishing you nothing but the best today and always. Stay awesome! 🌟", signature: "— Jessica" }
   ];
 
-  // Populate wishes list
   const wishesContainer = document.getElementById('wishesListContainer');
-  
   wishesData.forEach((wish, index) => {
     const wishItem = document.createElement('div');
     wishItem.className = 'wish-item';
@@ -202,14 +198,12 @@
     wishesContainer.appendChild(wishItem);
   });
 
-  // Envelope Modal Elements
   const envelopeModal = document.getElementById('envelopeModal');
   const closeEnvelopeBtn = document.getElementById('closeEnvelopeBtn');
   const envelopeName = document.getElementById('envelopeName');
   const envelopeMessage = document.getElementById('envelopeMessage');
   const envelopeSignature = document.getElementById('envelopeSignature');
 
-  // Function to open envelope with specific wish
   function openEnvelope(index) {
     const wish = wishesData[index];
     envelopeName.textContent = wish.name;
@@ -218,7 +212,6 @@
     envelopeModal.classList.add('active');
   }
 
-  // Add click listeners to all view buttons
   document.querySelectorAll('.view-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const index = parseInt(btn.getAttribute('data-index'));
@@ -226,24 +219,15 @@
     });
   });
 
-  // Close envelope modal
-  function closeEnvelope() {
-    envelopeModal.classList.remove('active');
-  }
-  
+  function closeEnvelope() { envelopeModal.classList.remove('active'); }
   closeEnvelopeBtn.addEventListener('click', closeEnvelope);
-  envelopeModal.addEventListener('click', (e) => {
-    if (e.target === envelopeModal) {
-      closeEnvelope();
-    }
-  });
+  envelopeModal.addEventListener('click', (e) => { if (e.target === envelopeModal) closeEnvelope(); });
 
-  // --- BACKGROUND MUSIC CONTROL ---
+  // MUSIC CONTROL
   const audio = document.getElementById('bgMusic');
   const musicToggle = document.getElementById('musicToggle');
   const musicStatusSpan = document.getElementById('musicStatus');
   const volumeSlider = document.getElementById('volumeSlider');
-  
   let musicPlaying = false;
   let originalVolume = 0.7;
   let isVolumeLowered = false;
@@ -255,32 +239,18 @@
     audio.play().then(() => {
       musicPlaying = true;
       musicStatusSpan.textContent = 'Pause Music';
-    }).catch((err) => {
+    }).catch(() => {
       musicPlaying = false;
       musicStatusSpan.textContent = 'Play Music';
     });
   }
-
-  function pauseMusic() {
-    audio.pause();
-    musicPlaying = false;
-    musicStatusSpan.textContent = 'Play Music';
-  }
-
-  function toggleMusic() {
-    if (musicPlaying) {
-      pauseMusic();
-    } else {
-      playMusic();
-    }
-  }
+  function pauseMusic() { audio.pause(); musicPlaying = false; musicStatusSpan.textContent = 'Play Music'; }
+  function toggleMusic() { musicPlaying ? pauseMusic() : playMusic(); }
 
   volumeSlider.addEventListener('input', (e) => {
     const val = e.target.value / 100;
     audio.volume = val;
-    if (!isVolumeLowered) {
-      originalVolume = val;
-    }
+    if (!isVolumeLowered) originalVolume = val;
   });
 
   function lowerMusicVolume() {
@@ -290,7 +260,6 @@
       isVolumeLowered = true;
     }
   }
-
   function restoreMusicVolume() {
     if (isVolumeLowered) {
       audio.volume = originalVolume;
@@ -300,52 +269,25 @@
 
   audio.loop = true;
   playMusic();
-
   document.body.addEventListener('click', function once() {
-    if (!musicPlaying && audio.paused) {
-      playMusic();
-    }
+    if (!musicPlaying && audio.paused) playMusic();
   }, { once: true });
+  musicToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMusic(); });
 
-  musicToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMusic();
-  });
-
-  // --- GIFT BUTTON LOGIC ---
+  // GIFT LOGIC
   const giftBtn = document.getElementById('giftButton');
   const giftOverlay = document.getElementById('giftOverlay');
   const closeGiftBtn = document.getElementById('closeGiftBtn');
   const giftVideo = document.getElementById('giftVideo');
 
-  function openGift() {
-    lowerMusicVolume();
-    giftOverlay.classList.add('active');
-    giftVideo.play().catch(err => {
-      console.log("Video autoplay blocked");
-    });
-  }
-
-  function closeGift() {
-    giftOverlay.classList.remove('active');
-    giftVideo.pause();
-    giftVideo.currentTime = 0;
-    restoreMusicVolume();
-  }
-
+  function openGift() { lowerMusicVolume(); giftOverlay.classList.add('active'); giftVideo.play().catch(()=>{}); }
+  function closeGift() { giftOverlay.classList.remove('active'); giftVideo.pause(); giftVideo.currentTime = 0; restoreMusicVolume(); }
   giftBtn.addEventListener('click', openGift);
   closeGiftBtn.addEventListener('click', closeGift);
-  giftVideo.addEventListener('ended', () => {
-    restoreMusicVolume();
-  });
-  
-  giftOverlay.addEventListener('click', (e) => {
-    if (e.target === giftOverlay) {
-      closeGift();
-    }
-  });
+  giftVideo.addEventListener('ended', restoreMusicVolume);
+  giftOverlay.addEventListener('click', (e) => { if (e.target === giftOverlay) closeGift(); });
 
-  // --- Confetti effect ---
+  // CONFETTI
   function createConfetti() {
     const container = document.getElementById('confettiContainer');
     for (let i = 0; i < 100; i++) {
@@ -354,7 +296,7 @@
       conf.style.left = Math.random() * 100 + '%';
       conf.style.width = (Math.random() * 8 + 5) + 'px';
       conf.style.height = (Math.random() * 15 + 8) + 'px';
-      conf.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      conf.style.background = `hsl(${Math.random() * 20 + 340}, 70%, 50%)`;
       conf.style.animationDuration = (Math.random() * 2 + 2) + 's';
       conf.style.animationDelay = Math.random() * 2 + 's';
       container.appendChild(conf);
@@ -364,24 +306,18 @@
   createConfetti();
   setInterval(createConfetti, 8000);
 
-  // Page navigation logic
+  // PAGE NAVIGATION
   function showPage(pageId) {
-    const pages = ['page1', 'page2', 'page3'];
-    pages.forEach(pid => {
+    ['page1', 'page2', 'page3'].forEach(pid => {
       const el = document.getElementById(pid);
       if (el) el.classList.remove('active-page');
     });
     const active = document.getElementById(pageId);
     if (active) active.classList.add('active-page');
   }
-
   document.querySelectorAll('.page-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const pageId = btn.getAttribute('data-page');
-      if (pageId) showPage(pageId);
-    });
+    btn.addEventListener('click', () => { const pageId = btn.getAttribute('data-page'); if (pageId) showPage(pageId); });
   });
-
   showPage('page1');
 </script>
 </body>

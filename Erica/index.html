@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>✨ Erica's Birthday | Modern Pink Celebration</title>
-  <link rel="stylesheet" href="style.css?>v=1.0">
+  <title>✨ Erica's Birthday</title>
+<link rel="stylesheet" href="style.css?v=1.0">
 </head>
 <body>
+
+<!-- 🐾 SUBTLE DOG BACKGROUND OVERLAY -->
+<div class="dog-bg-pattern"></div>
+
 <div class="shape-bg">
   <div class="shape1"></div>
   <div class="shape2"></div>
@@ -40,7 +44,7 @@
   <div class="envelope-paper">
     <div class="envelope-top">
       <button class="close-modal" id="closeEnvelopeModern">✕</button>
-      <span style="font-size:2rem;">💌✨</span>
+      <span style="font-size:2rem;"></span>
       <h3 id="modalPersonName" style="color:white; margin-top:6px;">Name</h3>
     </div>
     <div class="msg-content">
@@ -53,8 +57,8 @@
 <main class="glass-modern">
   <!-- hero -->
   <div class="hero-modern">
-    <div class="floating-icon">🎀🎂🌸</div>
-    <h1>HAPPY BIRTHDAY <br> ERICA AGUIRRE</h1>
+    <div class="floating-icon">🌸🎂🌸</div>
+    <h1> 🎀 HAPPY BIRTHDAY 🎀<br> ERICA AGUIRRE FRANCISCO </h1>
     <div class="hero-sub">✨ You deserve all the sparkle in the world ✨<br> A day made of love, laughter and sweet surprises.</div>
   </div>
 
@@ -75,7 +79,6 @@
     <div class="gallery-item"><img src="Image/Day_6.jpg" alt="Day_6" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">Day_6</div></div>
     <div class="gallery-item"><img src="Image/day9.jpg" alt="day9" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">day9</div></div>
     <div class="gallery-item"><img src="Image/day8.jpg" alt="day8" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">day8</div></div>
-
   </div>
 
   <!-- modern tab bar -->
@@ -116,7 +119,8 @@
     </div>
   </div>
 
-  <footer>🌸 Made with love — Happy Birthday Erica! 🌸<br>💖 May your day be as wonderful as you 💖</footer>
+  <footer>🌸 Made with love & paw prints — Happy Birthday Erica! 🌸<br>💖 May your day be as wonderful as you 💖</footer>
+
 </main>
 
 <!-- Image Lightbox Modal -->
@@ -147,7 +151,7 @@
       const bubble = document.createElement('div');
       bubble.className = 'wish-bubble';
       bubble.innerHTML = `<div class="wish-person"><span>💌</span> ${w.name}</div>
-                          <button class="envelope-btn" data-index="${idx}">📬 Open Envelope</button>`;
+                          <button class="envelope-btn" data-index="${idx}">📬 View</button>`;
       wishesContainer.appendChild(bubble);
     });
     document.querySelectorAll('.envelope-btn').forEach(btn => {
