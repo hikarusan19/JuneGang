@@ -299,9 +299,13 @@
       width: 90%;
       border-radius: 48px;
       overflow: hidden;
-      box-shadow: 0 30px 40px rgba(0,0,0,0.2);
+      border: 1px solid rgba(224,128,162,0.22);
+      box-shadow: 0 30px 40px rgba(0,0,0,0.12);
       transform: scale(0.9);
-      transition: transform 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
     }
     .romantic-modal.active .modal-card { transform: scale(1); }
     .modal-header {
@@ -309,6 +313,7 @@
       padding: 1.2rem;
       text-align: center;
       position: relative;
+      border-bottom: 1px solid rgba(255,220,230,0.6);
     }
     .close-modal-x {
       position: absolute;
@@ -323,6 +328,9 @@
     .modal-body {
       padding: 1.8rem;
       text-align: center;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      max-height: calc(80vh - 120px);
     }
     .modal-message {
       font-size: 1rem;
