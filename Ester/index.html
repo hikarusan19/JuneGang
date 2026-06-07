@@ -30,6 +30,23 @@
   </div>
 </div>
 
+<div id="envelopeVideoModal" class="video-gift-modal envelope-modal">
+  <div class="video-container-pink envelope-modal-card">
+    <button id="closeEnvelopeModal" style="position:absolute; top:1rem; right:1rem; background:none; border:none; font-size:1.6rem; cursor:pointer;">✕</button>
+    <div style="text-align:center; margin-bottom:1rem;">
+      <div style="font-size:1rem; letter-spacing:0.16em; color:#c75584; text-transform:uppercase;">Birthday Video</div>
+      <div id="envelopeVideoLabel" style="margin-top:0.75rem; font-size:1.55rem; font-weight:700;">Open Envelope</div>
+    </div>
+    <div id="envelopeVideoWrapper" class="envelope-video-wrapper">
+      <video id="modalEnvelopeVideo" controls preload="none">
+        <source type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <p id="envelopeVideoCaption" style="margin-top:1rem; color:#66304a; font-weight:700; text-align:center;"></p>
+  </div>
+</div>
+
 <!-- envelope modal -->
 <div id="envelopeModalRomantic" class="romantic-modal">
   <div class="modal-card">
@@ -87,11 +104,35 @@
 
   <!-- panel video info -->
   <div id="videoPanel" class="festival-panel">
-    <div style="background:#fff0f5; border-radius: 2rem; padding:1rem; text-align:center;">
+    <div style="background:#fff0f5; border-radius: 2rem; padding:1rem; text-align:center; margin-bottom:1rem;">
       <div style="background:#ffd9e6; display:inline-block; padding:0.2rem 1rem; border-radius:40px;">🎀 Special Clip 🎀</div>
       <h3 style="margin:1rem 0; color:#c75584;">✨ Birthday Wishes on Video ✨</h3>
-      <p>Press the "Open Gift" button above to enjoy a lovely video greeting created especially for you, Ester Mae.</p>
-      <div style="margin-top:1rem;">💖🎂💖</div>
+      
+    </div>
+    <div style="display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));">
+      <div class="envelope-card" style="background:#fff0f5; border-radius:1.8rem; padding:1rem; position:relative; overflow:hidden; box-shadow:0 14px 32px rgba(0,0,0,0.08);">
+        <h4 style="margin-bottom:0.75rem; color:#b03f7e;">🎬 Birthday Video Envelope</h4>
+        <div class="envelope-preview" style="cursor:pointer; border-radius:1.4rem; overflow:hidden; background:#f9e6f1; border:2px solid #f3c2db; padding:1.2rem; min-height:240px; display:flex; align-items:center; justify-content:center; position:relative;">
+          <div style="text-align:center;">
+            <div style="font-size:4rem; line-height:1;">✉️</div>
+            <div style="margin-top:0.9rem; font-weight:700; color:#a63169;">Open Envelope</div>
+          </div>
+          <button class="open-envelope-btn" data-src="Video/Dongskie.mp4" data-label="Happy Birthday " data-caption="From Kuya Dodong & Tita Berlay" style="position:absolute; inset:0; border:none; background:none; cursor:pointer;"></button>
+        </div>
+        <p style="margin-top:0.9rem; color:#66304a; font-weight:700;">From Kuya Dodong & Tita Berlay</p>
+      </div>
+      <div class="envelope-card" style="background:#fff0f5; border-radius:1.8rem; padding:1rem; position:relative; overflow:hidden; box-shadow:0 14px 32px rgba(0,0,0,0.08);">
+        <h4 style="margin-bottom:0.75rem; color:#b03f7e;">🎬 Birthday Video Envelope</h4>
+        <div class="envelope-preview" style="cursor:pointer; border-radius:1.4rem; overflow:hidden; background:#f9e6f1; border:2px solid #f3c2db; padding:1.2rem; min-height:240px; display:flex; align-items:center; justify-content:center; position:relative;">
+          <div style="text-align:center;">
+            <div style="font-size:4rem; line-height:1;">✉️</div>
+            <div style="margin-top:0.4rem; color:#b05586;"> Happy Birthday </div>
+          </div>
+          <button class="open-envelope-btn" data-src="Video/KuyaRoland.mp4" data-label="Kuya Roland" data-caption="From Kuya Roland" style="position:absolute; inset:0; border:none; background:none; cursor:pointer;"></button>
+        </div>
+        <p style="margin-top:0.9rem; color:#66304a; font-weight:700;">From Kuya Roland</p>
+      </div>
+      
     </div>
   </div>
 
@@ -176,12 +217,16 @@
   const openGiftBtn = document.getElementById('revealGiftBtn');
   const closeVideoBtn = document.getElementById('closeVideoModal');
   const videoElem = document.getElementById('giftVideoElem');
-  let originalVol = 0.65;
-  let isVolLow = false;
-  function lowerBgVol() { if(!isVolLow) { originalVol = bgAudio.volume; bgAudio.volume = 0.12; isVolLow = true; } }
-  function restoreBgVol() { if(isVolLow) { bgAudio.volume = originalVol; isVolLow = false; } }
+  let originalMuted = false;
+  function muteBgForGift() {
+    originalMuted = bgAudio.muted;
+    bgAudio.muted = true;
+  }
+  function restoreBgForGift() {
+    bgAudio.muted = originalMuted;
+  }
   function openVideoModal() {
-    lowerBgVol();
+    muteBgForGift();
     giftModalVideo.classList.add('active');
     videoElem.play().catch(e=>console.log);
   }
@@ -189,12 +234,12 @@
     giftModalVideo.classList.remove('active');
     videoElem.pause();
     videoElem.currentTime = 0;
-    restoreBgVol();
+    restoreBgForGift();
   }
   openGiftBtn.addEventListener('click', openVideoModal);
   closeVideoBtn.addEventListener('click', closeVideoModalFunc);
   giftModalVideo.addEventListener('click', (e) => { if(e.target === giftModalVideo) closeVideoModalFunc(); });
-  videoElem.addEventListener('ended', () => restoreBgVol());
+  videoElem.addEventListener('ended', restoreBgForGift);
 
   // confetti / falling petals effect (pink theme)
   function createPetals() {
@@ -220,6 +265,58 @@
   document.head.appendChild(stylePetals);
   createPetals();
   setInterval(createPetals, 7000);
+
+  const envelopeModal = document.getElementById('envelopeVideoModal');
+  const closeEnvelopeModalBtn = document.getElementById('closeEnvelopeModal');
+  const envelopeVideoLabel = document.getElementById('envelopeVideoLabel');
+  const envelopeVideoCaption = document.getElementById('envelopeVideoCaption');
+  const envelopeVideoWrapper = document.getElementById('envelopeVideoWrapper');
+  const modalEnvelopeVideo = document.getElementById('modalEnvelopeVideo');
+  const modalEnvelopeSource = modalEnvelopeVideo.querySelector('source');
+  let envelopeSavedBgMuted = false;
+
+  function muteBgAudioForEnvelope() {
+    envelopeSavedBgMuted = bgAudio.muted;
+    bgAudio.muted = true;
+  }
+
+  function restoreBgAudioForEnvelope() {
+    bgAudio.muted = envelopeSavedBgMuted;
+  }
+
+  function closeEnvelopeModal() {
+    envelopeModal.classList.remove('active');
+    envelopeVideoWrapper.classList.remove('visible');
+    modalEnvelopeVideo.pause();
+    modalEnvelopeVideo.currentTime = 0;
+    modalEnvelopeSource.src = '';
+    restoreBgAudioForEnvelope();
+  }
+
+  function openEnvelopeModal(src, label, caption) {
+    modalEnvelopeSource.src = src;
+    envelopeVideoLabel.textContent = label;
+    envelopeVideoCaption.textContent = caption;
+    envelopeVideoWrapper.classList.remove('visible');
+    envelopeModal.classList.add('active');
+    muteBgAudioForEnvelope();
+    envelopeVideoWrapper.classList.add('visible');
+    modalEnvelopeVideo.load();
+    modalEnvelopeVideo.play().catch(() => {});
+  }
+
+  closeEnvelopeModalBtn.addEventListener('click', closeEnvelopeModal);
+  envelopeModal.addEventListener('click', (e) => { if (e.target === envelopeModal) closeEnvelopeModal(); });
+  modalEnvelopeVideo.addEventListener('ended', restoreBgAudioForEnvelope);
+
+  document.querySelectorAll('.open-envelope-btn').forEach(btn => {
+    btn.addEventListener('click', (event) => {
+      const src = event.currentTarget.getAttribute('data-src');
+      const label = event.currentTarget.getAttribute('data-label');
+      const caption = event.currentTarget.getAttribute('data-caption');
+      openEnvelopeModal(src, label, caption);
+    });
+  });
 
   // tab switching (wave tabs)
   const waveBtns = document.querySelectorAll('.wave-btn');

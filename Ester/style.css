@@ -372,6 +372,50 @@
       margin: 0.8rem 0;
     }
 
+    .video-gift-modal.envelope-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .video-gift-modal.envelope-modal.active {
+      display: flex;
+    }
+    .envelope-modal-card {
+      width: min(92vw, 720px);
+      background: #fff7fb;
+      border-radius: 2rem;
+      padding: 1.5rem;
+      box-shadow: 0 26px 60px rgba(0, 0, 0, 0.16);
+      position: relative;
+      overflow: hidden;
+    }
+    .envelope-video-wrapper {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    .envelope-video-wrapper.visible {
+      display: block;
+    }
+    .envelope-video-wrapper video {
+      width: 100%;
+      border-radius: 1.2rem;
+      max-height: 360px;
+      background: #000;
+    }
+    .open-envelope-btn {
+      position: absolute;
+      inset: 0;
+      border: none;
+      background: none;
+      cursor: pointer;
+      z-index: 2;
+    }
+
     footer {
       text-align: center;
       margin-top: 2rem;
