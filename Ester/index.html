@@ -24,7 +24,7 @@
     <button id="closeVideoModal" style="float:right; background:none; border:none; font-size:1.6rem; cursor:pointer;">✕</button>
     <h3 style="color:#dc6b94;">🎁 Birthday Gift For You 🎁</h3>
     <video id="giftVideoElem" controls preload="metadata">
-      <source src="../Extra/birthday_video.mp4" type="video/mp4">
+      <source src="Video/specialMessage.mp4" type="video/mp4">
     </video>
     <p style="color:#aa6382;">💖 A sweet video message just for Ester Mae 💖</p>
   </div>
@@ -72,9 +72,11 @@
 
   <!-- surprise gift panel -->
   <div class="gift-reveal">
-    <div>
+    <div class="gift-copy">
       <h3>🌸 A special surprise awaits 🌸</h3>
-      <p>Click the button to open a heartwarming birthday video made for you.</p>
+      <p>Click the button to open the special birthday video made just for you.</p>
+    </div>
+    <div class="gift-video-preview">
     </div>
     <button id="revealGiftBtn" class="open-gift-button">🎁 Open Gift 🎁</button>
   </div>
@@ -139,9 +141,9 @@
             <div style="font-size:4rem; line-height:1;">✉️</div>
             <div style="margin-top:0.9rem; font-weight:700; color:#a63169;">Open Envelope</div>
           </div>
-          <button class="open-envelope-btn" data-src="Video/KuyaMicheal.mp4" data-label="Happy Birthday " data-caption="From Kuya Micheal" style="position:absolute; inset:0; border:none; background:none; cursor:pointer;"></button>
+          <button class="open-envelope-btn" data-src="Video/KuyaMicheal.mp4" data-label="Happy Birthday " data-caption="From Kuya Michael" style="position:absolute; inset:0; border:none; background:none; cursor:pointer;"></button>
         </div>
-        <p style="margin-top:0.9rem; color:#66304a; font-weight:700;">From Kuya Micheal</p>
+        <p style="margin-top:0.9rem; color:#66304a; font-weight:700;">From Kuya Michael</p>
       </div>
       <div class="envelope-card" style="background:#fff0f5; border-radius:1.8rem; padding:1rem; position:relative; overflow:hidden; box-shadow:0 14px 32px rgba(0,0,0,0.08);">
         <h4 style="margin-bottom:0.75rem; color:#b03f7e;">🎬 Birthday Video Envelope</h4>
@@ -239,6 +241,28 @@
         </div>
         <p style="margin-top:0.9rem; color:#66304a; font-weight:700;">From Long Long✨</p>
       </div>
+      <div class="envelope-card" style="background:#fff0f5; border-radius:1.8rem; padding:1rem; position:relative; overflow:hidden; box-shadow:0 14px 32px rgba(0,0,0,0.08);">
+        <h4 style="margin-bottom:0.75rem; color:#b03f7e;">🎬 Birthday Video Envelope</h4>
+        <div class="envelope-preview" style="cursor:pointer; border-radius:1.4rem; overflow:hidden; background:#f9e6f1; border:2px solid #f3c2db; padding:1.2rem; min-height:240px; display:flex; align-items:center; justify-content:center; position:relative;">
+          <div style="text-align:center;">
+            <div style="font-size:4rem; line-height:1;">✉️</div>
+            <div style="margin-top:0.4rem; color:#b05586;"> Happy Birthday </div>
+          </div>
+          <button class="open-envelope-btn" data-src="Video/Mommy.mp4" data-label="Happy Birthday" data-caption="From Mommy " style="position:absolute; inset:0; border:none; background:none; cursor:pointer;"></button>
+        </div>
+        <p style="margin-top:0.9rem; color:#66304a; font-weight:700;">From Mommy✨</p>
+      </div>
+      <div class="envelope-card" style="background:#fff0f5; border-radius:1.8rem; padding:1rem; position:relative; overflow:hidden; box-shadow:0 14px 32px rgba(0,0,0,0.08);">
+        <h4 style="margin-bottom:0.75rem; color:#b03f7e;">🎬 Birthday Video Envelope</h4>
+        <div class="envelope-preview" style="cursor:pointer; border-radius:1.4rem; overflow:hidden; background:#f9e6f1; border:2px solid #f3c2db; padding:1.2rem; min-height:240px; display:flex; align-items:center; justify-content:center; position:relative;">
+          <div style="text-align:center;">
+            <div style="font-size:4rem; line-height:1;">✉️</div>
+            <div style="margin-top:0.4rem; color:#b05586;"> Happy Birthday </div>
+          </div>
+          <button class="open-envelope-btn" data-src="Video/daddyTata.mp4" data-label="Happy Birthday" data-caption="From Daddy " style="position:absolute; inset:0; border:none; background:none; cursor:pointer;"></button>
+        </div>
+        <p style="margin-top:0.9rem; color:#66304a; font-weight:700;">From Daddy✨</p>
+      </div>
     </div>
   </div>
 
@@ -269,15 +293,14 @@
 <script>
   // wishes data (same content, for Ester Mae)
   const wishesEster = [
-    { name: "👩‍👧 Mom", message: "Happy Birthday, my dear Ester Mae! You are a gift to our family. May your life be as sweet as honey and as bright as the morning sun. I love you endlessly. 💖", signature: "— Love, Mom" },
-    { name: "👨‍👦 Dad", message: "To my precious daughter, Happy Birthday! You make me proud every single day. Keep dreaming big and shining bright. Have a fantastic year! 🎉", signature: "— Dad" },
+  
         { name: ": Nicole", message: `Hi sissyyy ko happy birthday saimoha ang more birthday and blessing to comes, unta tagaan paka ni lord ug taas na life and unta ipalayu na ni lord ang mga tao na ginadaut ka, gusto ko mag thankyou saimoha ky perme ka naa samong side always mi nimo gina comfort and dili nimo gina pa feel saamoa na ma left out, im so proud of you na ate kita, masking mag igagaw lang ta i treat pyou as my real sister sainyu tanan, tan aw nko sainyu igsoon jud nko, thankyou ky sukad pa atung bata pako naa naka thankful kyu ko ky naa ka everytime na sad ko,everytime na sakit nakyu tapos perme ko kasab an naa lang ka perme para maminaw sa rants and chikas nko and thankyou sa mga advice nimo sakoa always nko na isulod skung utok ,and always remember na ikaw ang pinaka the best sister and the best bestfriend namo tanan, unta dili nimo kalimtqn imong sarili. Ikaw ang isa sa pinaka but an na nakaila nako, every time na magsabay sa tapos maka kita kag nanglimos imohang tagaan. And never ka nag damot samoa unta tagaan ka ni lord ug the best life ,life na deserve nimo. And ikaw ang isa sa nakaila nko na strong and compassionate. And i hope this year brings you peace, confidence,and freedom, always remember ha na you deserve to feel love today and always. I loveeyouusuchhhhhhh morethan everything. Wish nko is unta dili naka ma imsecure huhu ky pretty jud kyu ka ate promisee as in tas unta dili naka maulaw saamo mo doul pag wala pakay ligo tas ayaw na ug cgeg " aysig doul ba bahu nakyu ko" huhu dili man mi mag judge saimo promise wala man miy paki masking pila paka ka adlaw dili maligo wala miy labut ug ayaw sad hunahunaa perme na " ayh taba nkyu ko:(" ayaw na huna hunaa na bagay rkyu imong lawas saimohaa be confident hehe mao langgg ,again happy birthday boss!!🤍🤍🤍`, signature: "— Nicole" },
-    { name: ": MIKAELA SHAYNE M. BOLDA ", message: `Hiii Happy Birthday, Ate princesszz! 🎉🥳
+    { name: ": MIKAY ", message: `Hiii Happy Birthday, Ate princesszz! 🎉🥳
   Another year older na pud ka hahaha. Thank you for always being there for us and for being such a great ate. Wishing you good health, happiness, and more blessings to come. 💖Kabalo ko nga daghan kag naagian ug gi-atubang lately, pero grabe gihapon ka ka-strong. Bisan lisod usahay, makaya gihapon nimo mo-smile ug mo-padayon. Honestly, that's something I really admire about you heh. I hope this year mahimong mas kind sa imoha. Deserve nimo ang peace, happiness, ug tanan nga good things nga moabot sa imong life. Ayaw kalimot nga magpahuway sad ug unahon usahay imong kaugalingon tas dapat mag inom naka daghan ug tubig dili sigeg coke pirme. Also, I just want you to know how much I appreciate our bonds. Lingaw kaayo ko sa atong mga moments together especially sa atong mga tongits sessions, Mobile Legends games, ug sa atong mga random stories ug chikahan ug katong bonds nato atong quarantine. Those simple moments are some of my favorite bonds  with you, and I hope we get to make even more anoeee hahaha. And te, ayaw kalimot nga naa ra mi pirmi diri para nimo. If naa kay problema, kapoy, or if you just need someone to talk to, don't hesitate to reach out. Dili nimo kinahanglan pas-anon tanan ikaw ra usa. And also te I may not be the best at showing it, and usahay dili ko expressive, pero I promise that I genuinely love and care about you te. I'm always rooting for you and I will always be grateful to have you as my Ate. 🤍Enjoy your day, teee! Deserve nimo tanan good things nga moabot sa imoha. No stress today, okay? Just eat good food, have fun, and make good memories. Stay safe, stay pretty, stay blessed, and stay winning in life. Keep slaying as always. Love you always, Ate esterrr! 🫶🎂✨ 🎀✨`, signature: "— Mikay" },
     { name: ": Cedoy", message: `hey te Happy birthday  te, princess unta malipayon unta karun te ug Hatagan ka Blessings  ni lord te, salamat kaayo  na Gina  hatagan Ko nimo kwarta , ug sukad pa atong bata pako te Gina Tudluan ko nimo pag Basa Ug salamat pud te gina sabayan ko Nimo  te Sa pag enrolled  Ug  gina sabayan Pud Ko Nimo Pag Dula Ug ml te  ug ginahatagan ko pud nimo Skincare  yarn,  ug mao rato Te`, signature: "— Cedoy" },
-    { name: ": KYLE ANDREW B. BOLDA", message: "TE HAPPY BIRTHDAYYYY UG TIGAAN KAG MAAYONG LAWAS NI GOD AND TIGAAN KAG DAKO PA NGA LIFE UG MUTABA PAKA SAIMUNG BIRTHDAY AND TIGAAN KAG MAAYONG TRABAHO UG NAGPASALAMAT KO SAINYONG DUHA NI KUYA JAMES SA TANAN LIBRE NA GIHATAG NINYO SA AMOA UG SA HAPPY MOMMENTS NATO MAG IGAGAW AND SAFE MO DIHA SA MANILA TIGAAN SAD KAG MOREEEEEEE BLESSING NI GOD UNTA NAA PAY LIBRE SUNOD HEHEHEHEHEHEH WLAY KAON DIHA. 💕", signature: "— LongLong" },
+    { name: ": Long Long", message: "TE HAPPY BIRTHDAYYYY UG TIGAAN KAG MAAYONG LAWAS NI GOD AND TIGAAN KAG DAKO PA NGA LIFE UG MUTABA PAKA SAIMUNG BIRTHDAY AND TIGAAN KAG MAAYONG TRABAHO UG NAGPASALAMAT KO SAINYONG DUHA NI KUYA JAMES SA TANAN LIBRE NA GIHATAG NINYO SA AMOA UG SA HAPPY MOMMENTS NATO MAG IGAGAW AND SAFE MO DIHA SA MANILA TIGAAN SAD KAG MOREEEEEEE BLESSING NI GOD UNTA NAA PAY LIBRE SUNOD HEHEHEHEHEHEH WLAY KAON DIHA. 💕", signature: "— LongLong" },
 
-    { name: ": JEFFERSON CAINGLET", message: "HI TE ESTERRRR, HAPPY HAPPY BIRTHDAY SAYO  ANG ARAW NATO, WISHING YOU A GOOD HEALTH AND THANK YOU FOR BEING ATE SAMO SALAMAT SA MGA TABANG NIMO/NINYO NI KUYAHHEHHHEH UNTA PADAYUN RAMO NI KUYA STAY STRONG SA INYO AND ALSO THANKFULL AKO/KAMI KAY TUNGOD NINYO NI KUYA NAGATAPOK² TA  LIKE GINA TURING MI NINYO NGA ANAK/IGSOON/KA TONGITSHHAHAHHHHA, BITAW TE GAMAY RANA NGA MESSAGE PERO UNTA HAPPY AND MA SUCCESSFUL NAKA SA IMONG PAGKA PSYCHOLOGY I MEAN  UNTA MAKAGAWAS NAKAS UM EHHEHHE MAORANA TE HAPPY HAPPY BIRTHDAY AND UNTA SUCCESSFUL SAD IMONG BIRTHDAY", signature: "— To ESTER EGG " },
+    { name: ": SonSon", message: "HI TE ESTERRRR, HAPPY HAPPY BIRTHDAY SAYO  ANG ARAW NATO, WISHING YOU A GOOD HEALTH AND THANK YOU FOR BEING ATE SAMO SALAMAT SA MGA TABANG NIMO/NINYO NI KUYAHHEHHHEH UNTA PADAYUN RAMO NI KUYA STAY STRONG SA INYO AND ALSO THANKFULL AKO/KAMI KAY TUNGOD NINYO NI KUYA NAGATAPOK² TA  LIKE GINA TURING MI NINYO NGA ANAK/IGSOON/KA TONGITSHHAHAHHHHA, BITAW TE GAMAY RANA NGA MESSAGE PERO UNTA HAPPY AND MA SUCCESSFUL NAKA SA IMONG PAGKA PSYCHOLOGY I MEAN  UNTA MAKAGAWAS NAKAS UM EHHEHHE MAORANA TE HAPPY HAPPY BIRTHDAY AND UNTA SUCCESSFUL SAD IMONG BIRTHDAY", signature: "— To ESTER EGG " },
 
 
   ];
