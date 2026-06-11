@@ -99,11 +99,40 @@
     </div>
     <div id="videoAlbum" class="video-album" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1rem; padding:1rem;">
       <style>
-        .envelope-card { background: linear-gradient(180deg,#3a0c0c,#1a0505); color:#fff; border-radius:14px; padding:0.6rem; cursor:pointer; }
-        .envelope-preview { height:140px; background:#0b0606; border-radius:10px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
-        .envelope-seal { position:absolute; left:50%; top:50%; transform:translate(-50%,-10%); font-size:2.2rem; opacity:0.95 }
+        #videoAlbum { justify-items:center; }
+        .envelope-card {
+          background: linear-gradient(180deg,#3a0c0c,#1a0505);
+          color:#fff;
+          border-radius:14px;
+          padding:0.6rem;
+          cursor:pointer;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          gap:0.5rem;
+          width:100%;
+          max-width:280px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+        }
+        .envelope-preview {
+          width:100%;
+          height:140px;
+          background:linear-gradient(180deg,#120606,#0b0606);
+          border-radius:10px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          position:relative;
+          overflow:hidden;
+          border: 1px solid rgba(255,255,255,0.04);
+        }
+        .envelope-seal { position:relative; transform:none; font-size:2.2rem; opacity:0.95; z-index:2 }
         .envelope-label { padding-top:0.6rem; text-align:center; font-weight:700; }
         .open-envelope-btn { position:absolute; inset:0; border:none; background:none; cursor:pointer; }
+        @media (max-width:480px){
+          #videoAlbum { grid-template-columns:repeat(2,1fr); }
+          .envelope-card { max-width:220px; }
+        }
       </style>
       <div class="envelope-card video-card" data-src="Video/MamaAying.mp4">
         <div class="envelope-preview">
@@ -227,7 +256,17 @@
     giftVideo.currentTime = 0;
     audio.muted = originalMuted;
   }
-  giftBtn.addEventListener('click', openGift);
+  // Ensure the main "Yes, I'm ready" button always opens the special MamaBeth message
+  giftBtn.addEventListener('click', () => {
+    const sourceEl = giftVideo.querySelector('source');
+    if (sourceEl) {
+      sourceEl.src = 'SpecialMessage/MamaBeth.mp4';
+      giftVideo.load();
+    } else {
+      giftVideo.src = 'SpecialMessage/MamaBeth.mp4';
+    }
+    openGift();
+  });
   closeGiftBtn.addEventListener('click', closeGift);
   giftVideo.addEventListener('ended', () => {
     audio.muted = originalMuted;
