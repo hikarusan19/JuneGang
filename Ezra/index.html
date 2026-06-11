@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>🎂 Crimson & Black Birthday — Ezra Aguirre 🎉</title>
+  <title>Ezra Mae Aguirre 🎉</title>
 <link rel="stylesheet" href="style.css?v=1.0">
 </head>
 <body>
@@ -29,10 +29,10 @@
 <div id="giftOverlay" class="gift-overlay">
   <div class="gift-box">
     <button class="close-gift" id="closeGiftBtn">✕</button>
-    <div class="gift-title">🎁 OPEN YOUR GIFT 🎁</div>
+    <div class="gift-title">🎉 HAPPY BIRTHDAY 🎉</div>
     <div class="video-container">
       <video id="giftVideo" class="birthday-video" controls controlsList="nodownload" preload="metadata">
-        <source src="../Extra/birthday_video.mp4" type="video/mp4">
+        <source src="SpecialMessage/MamaBeth.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -42,31 +42,15 @@
   </div>
 </div>
 
-<!-- Envelope Modal for Wishes -->
-<div id="envelopeModal" class="envelope-overlay">
-  <div class="envelope-card">
-    <div class="close-envelope" id="closeEnvelopeBtn">✕</div>
-    <div class="envelope-header">
-      <div class="envelope-icon">✉️💌</div>
-      <div class="envelope-name" id="envelopeName">Friend's Name</div>
-    </div>
-    <div class="envelope-body">
-      <div class="message-text" id="envelopeMessage">
-        Your heartfelt message will appear here...
-      </div>
-      <div class="message-signature" id="envelopeSignature">— With love</div>
-    </div>
-  </div>
-</div>
+<!-- Envelope modal removed (wishes not needed) -->
 
 <div class="confetti" id="confettiContainer"></div>
 <div class="birthday-container">
   <div class="hero-card">
     <div class="cake-bounce">🎂🎈</div>
-    <h1>🎉 HAPPY BIRTHDAY EZRA AGUIRRE 🎉</h1>
+    <h1>🎉 HAPPY BIRTHDAY EZRA MAEAGUIRRE 🎉</h1>
     <div class="birthday-message">
-      ✨ Wishing you a day full of smiles, love, and all your favorite things. ✨<br>
-      Hope your year ahead is as bright and wonderful as you are. 💫
+      Wishing you a day filled with love, laughter, and unforgettable memories. May this year bring you endless joy and all the happiness in the world. Happy Birthday, Ezra! 🎂🎁✨
     </div>
   </div>
 
@@ -74,7 +58,7 @@
   <div class="ready-card">
     <div class="ready-title">🎁 Are you ready? 🎁</div>
     <div class="ready-description">
-      A special birthday surprise is waiting just for you, Ezra. Tap the button below to open your gift. The background music will lower so you can enjoy the video message!
+      A special birthday surprise is waiting just for you, Ezra. Tap the envelope below to open and watch the video. The background music will pause so you can enjoy the message!
     </div>
     <div class="gift-section">
       <button id="giftButton" class="gift-btn">
@@ -87,141 +71,81 @@
   <div class="gallery-title">
     <span>📸</span> Birthday Memories <span>🎞️</span>
   </div>
-  <div class="photo-grid">
-    <div class="photo-card">
-      <div class="picture-placeholder">
-        <div class="placeholder-icon">🎂</div>
-        <div class="placeholder-text">[ Your Photo Here ]</div>
-      </div>
-      <div class="photo-caption">✨ Birthday Cake Moment</div>
-    </div>
-    <div class="photo-card">
-      <div class="picture-placeholder">
-        <div class="placeholder-icon">🎁</div>
-        <div class="placeholder-text">[ Your Photo Here ]</div>
-      </div>
-      <div class="photo-caption">🎀 Surprise Gifts</div>
-    </div>
-    <div class="photo-card">
-      <div class="picture-placeholder">
-        <div class="placeholder-icon">🎈</div>
-        <div class="placeholder-text">[ Your Photo Here ]</div>
-      </div>
-      <div class="photo-caption">🎉 Party with Friends</div>
-    </div>
-    <div class="photo-card">
-      <div class="picture-placeholder">
-        <div class="placeholder-icon">✨</div>
-        <div class="placeholder-text">[ Your Photo Here ]</div>
-      </div>
-      <div class="photo-caption">🌟 Special Smile</div>
-    </div>
+  <style>
+    #photoGrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1rem; margin-top:1rem; }
+    .photo-card { border-radius:12px; overflow:hidden; background:transparent; }
+    .photo-card img { width:100%; height:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+    @media (max-width:420px){ #photoGrid { grid-template-columns:repeat(2,1fr); } }
+  </style>
+  <div id="photoGrid">
+    <div class="photo-card"><img src="Image/1.jpg" alt="Memory 1"></div>
+    <div class="photo-card"><img src="Image/2.jpg" alt="Memory 2"></div>
+    <div class="photo-card"><img src="Image/3.jpg" alt="Memory 3"></div>
+    <div class="photo-card"><img src="Image/4.jpg" alt="Memory 4"></div>
   </div>
 
   <!-- Next Pages Navigation -->
   <div class="nav-buttons">
-    <button class="page-btn" data-page="page1">💝 Wishes & Love</button>
     <button class="page-btn" data-page="page2">🎬 Video Album</button>
-    <button class="page-btn" data-page="page3">🎁 Memory Gallery</button>
-  </div>
-
-  <!-- Page 1: Wishes Panel -->
-  <div id="page1" class="page-panel">
-    <div class="page-title">💌 Heartfelt Wishes for Ezra</div>
-    <div class="wishes-grid" id="wishesListContainer"></div>
   </div>
 
   <!-- Page 2: Video Album Page -->
   <div id="page2" class="page-panel">
     <div class="page-title">🎬 Birthday Video Album</div>
-    <div style="text-align: center; padding: 1rem;">
-      <div class="video-placeholder-note" style="font-size: 1rem; background:#2e0909;">
-        🎥 Click "Yes, I'm ready!" above to watch the special birthday video! 🎁
+    <div style="text-align: center; padding: 0.5rem;">
+      <div class="video-placeholder-note" style="font-size: 1rem; background:#2e0909; display:inline-block; padding:0.5rem 1rem; border-radius:8px; color:#fff;">
+        Are You Ready for More Surprises? 🎁 Click on any envelope to watch a special video message from your loved ones!
+      </div>
+    </div>
+    <div id="videoAlbum" class="video-album" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1rem; padding:1rem;">
+      <style>
+        .envelope-card { background: linear-gradient(180deg,#3a0c0c,#1a0505); color:#fff; border-radius:14px; padding:0.6rem; cursor:pointer; }
+        .envelope-preview { height:140px; background:#0b0606; border-radius:10px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+        .envelope-seal { position:absolute; left:50%; top:50%; transform:translate(-50%,-10%); font-size:2.2rem; opacity:0.95 }
+        .envelope-label { padding-top:0.6rem; text-align:center; font-weight:700; }
+        .open-envelope-btn { position:absolute; inset:0; border:none; background:none; cursor:pointer; }
+      </style>
+      <div class="envelope-card video-card" data-src="Video/MamaAying.mp4">
+        <div class="envelope-preview">
+          <div class="envelope-seal">✉️</div>
+          <button class="open-envelope-btn" aria-label="Open Mama Aying"></button>
+        </div>
+        <div class="envelope-label">Mama Aying</div>
+      </div>
+      <div class="envelope-card video-card" data-src="Video/LolaEmmie.mp4">
+        <div class="envelope-preview">
+          <div class="envelope-seal">✉️</div>
+          <button class="open-envelope-btn" aria-label="Open Lola Emmie"></button>
+        </div>
+        <div class="envelope-label">Lola Emmie</div>
+      </div>
+      <div class="envelope-card video-card" data-src="Video/DaddyBobong.mp4">
+        <div class="envelope-preview">
+          <div class="envelope-seal">✉️</div>
+          <button class="open-envelope-btn" aria-label="Open Daddy Bobong"></button>
+        </div>
+        <div class="envelope-label">Daddy Bobong</div>
+      </div>
+      <div class="envelope-card video-card" data-src="Video/Junior.mp4">
+        <div class="envelope-preview">
+          <div class="envelope-seal">✉️</div>
+          <button class="open-envelope-btn" aria-label="Open Junior"></button>
+        </div>
+        <div class="envelope-label">Junior</div>
       </div>
     </div>
   </div>
-
-  <!-- Page 3: Extra Memories -->
-  <div id="page3" class="page-panel">
-    <div class="page-title">📷 Extra Sweet Memories</div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 1rem; margin-top: 1rem;">
-      <div class="photo-card" style="background:#160202;">
-        <div class="picture-placeholder" style="height:150px;">
-          <div class="placeholder-icon">📸</div>
-          <div class="placeholder-text">[ Photo ]</div>
-        </div>
-        <div class="photo-caption">Funny moment</div>
-      </div>
-      <div class="photo-card" style="background:#160202;">
-        <div class="picture-placeholder" style="height:150px;">
-          <div class="placeholder-icon">🎂</div>
-          <div class="placeholder-text">[ Photo ]</div>
-        </div>
-        <div class="photo-caption">Cake time</div>
-      </div>
-      <div class="photo-card" style="background:#160202;">
-        <div class="picture-placeholder" style="height:150px;">
-          <div class="placeholder-icon">🎈</div>
-          <div class="placeholder-text">[ Photo ]</div>
-        </div>
-        <div class="photo-caption">Balloons</div>
-      </div>
-    </div>
-  </div>
+  <!-- Memory gallery removed -->
 
   <footer>
     🎂 Made with love — Happy Birthday Ezra! 🎂<br>
-    ✨ May all your wishes come true ✨
+    ✨ May all your wishes come true ✨ <br>
+    Created by Hikaru
   </footer>
 </div>
 
 <script>
-  // WISHES DATA
-  const wishesData = [
-    { name: "👩‍👧 Mom", message: "Happy Birthday, my dearest Ezra! Watching you grow has been my greatest joy. May your year be filled with endless blessings and happiness. I love you more than words can say! 💖", signature: "— Love, Mom" },
-    { name: "👨‍👦 Dad", message: "To my amazing son, Happy Birthday! Proud of the person you've become. Keep chasing your dreams and never stop smiling. Have a fantastic year ahead! 🎉", signature: "— Dad" },
-    { name: "👧 Sister Sarah", message: "Happy Birthday to the best brother ever! Thanks for always being there for me. You're my hero and my best friend. Let's celebrate big time! 🎂✨", signature: "— Your sis, Sarah" },
-    { name: "👴 Grandpa", message: "Happy Birthday, Ezra! May your days be filled with laughter and your heart with warmth. So proud of you, grandson. Enjoy your special day! 🎈", signature: "— Grandpa" },
-    { name: "👵 Grandma", message: "To my precious grandson, sending you the biggest hug and lots of love on your birthday. May God bless you always! 💕", signature: "— Grandma" },
-    { name: "🧑‍🤝‍🧑 Best Friend Mark", message: "Bro! Happy Birthday! Thanks for all the awesome memories. Can't wait to make more this year. You're legendary! 🎮🔥", signature: "— Mark" },
-    { name: "👩‍🎨 Friend Jessica", message: "Happy Birthday, Ezra! You light up every room you enter. Wishing you nothing but the best today and always. Stay awesome! 🌟", signature: "— Jessica" }
-  ];
-
-  const wishesContainer = document.getElementById('wishesListContainer');
-  wishesData.forEach((wish, index) => {
-    const wishItem = document.createElement('div');
-    wishItem.className = 'wish-item';
-    wishItem.innerHTML = `
-      <div class="wish-name">${wish.name}</div>
-      <button class="view-btn" data-index="${index}">📬 Open Envelope</button>
-    `;
-    wishesContainer.appendChild(wishItem);
-  });
-
-  const envelopeModal = document.getElementById('envelopeModal');
-  const closeEnvelopeBtn = document.getElementById('closeEnvelopeBtn');
-  const envelopeName = document.getElementById('envelopeName');
-  const envelopeMessage = document.getElementById('envelopeMessage');
-  const envelopeSignature = document.getElementById('envelopeSignature');
-
-  function openEnvelope(index) {
-    const wish = wishesData[index];
-    envelopeName.textContent = wish.name;
-    envelopeMessage.textContent = wish.message;
-    envelopeSignature.textContent = wish.signature;
-    envelopeModal.classList.add('active');
-  }
-
-  document.querySelectorAll('.view-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const index = parseInt(btn.getAttribute('data-index'));
-      openEnvelope(index);
-    });
-  });
-
-  function closeEnvelope() { envelopeModal.classList.remove('active'); }
-  closeEnvelopeBtn.addEventListener('click', closeEnvelope);
-  envelopeModal.addEventListener('click', (e) => { if (e.target === envelopeModal) closeEnvelope(); });
+  // Wishes & envelope removed per user request
 
   // MUSIC CONTROL
   const audio = document.getElementById('bgMusic');
@@ -231,6 +155,8 @@
   let musicPlaying = false;
   let originalVolume = 0.7;
   let isVolumeLowered = false;
+  let musicWasPlayingBeforeVideo = false;
+  let originalMuted = false;
 
   audio.volume = 0.7;
   volumeSlider.value = 70;
@@ -268,10 +194,16 @@
   }
 
   audio.loop = true;
-  playMusic();
-  document.body.addEventListener('click', function once() {
-    if (!musicPlaying && audio.paused) playMusic();
-  }, { once: true });
+  // Attempt to play when redirected from the passcode page.
+  // Browsers may still block autoplay; this tries once and clears the flag.
+  try {
+    if (sessionStorage.getItem('playBg') === '1') {
+      sessionStorage.removeItem('playBg');
+      playMusic();
+    }
+  } catch (e) {}
+
+  // Do not autoplay on normal refresh to avoid unexpected audio.
   musicToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMusic(); });
 
   // GIFT LOGIC
@@ -280,11 +212,26 @@
   const closeGiftBtn = document.getElementById('closeGiftBtn');
   const giftVideo = document.getElementById('giftVideo');
 
-  function openGift() { lowerMusicVolume(); giftOverlay.classList.add('active'); giftVideo.play().catch(()=>{}); }
-  function closeGift() { giftOverlay.classList.remove('active'); giftVideo.pause(); giftVideo.currentTime = 0; restoreMusicVolume(); }
+  function openGift() {
+    musicWasPlayingBeforeVideo = musicPlaying;
+    originalMuted = audio.muted;
+    if (musicPlaying) {
+      audio.muted = true;
+    }
+    giftOverlay.classList.add('active');
+    giftVideo.play().catch(() => {});
+  }
+  function closeGift() {
+    giftOverlay.classList.remove('active');
+    giftVideo.pause();
+    giftVideo.currentTime = 0;
+    audio.muted = originalMuted;
+  }
   giftBtn.addEventListener('click', openGift);
   closeGiftBtn.addEventListener('click', closeGift);
-  giftVideo.addEventListener('ended', restoreMusicVolume);
+  giftVideo.addEventListener('ended', () => {
+    audio.muted = originalMuted;
+  });
   giftOverlay.addEventListener('click', (e) => { if (e.target === giftOverlay) closeGift(); });
 
   // CONFETTI
@@ -306,9 +253,29 @@
   createConfetti();
   setInterval(createConfetti, 8000);
 
+  // Video Album: wire up cards to open in the gift player
+  (function setupVideoAlbum() {
+    const album = document.getElementById('videoAlbum');
+    if (!album) return;
+    album.querySelectorAll('.video-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const src = card.getAttribute('data-src');
+        if (!src) return;
+        const sourceEl = giftVideo.querySelector('source');
+        if (sourceEl) {
+          sourceEl.src = src;
+          giftVideo.load();
+        } else {
+          giftVideo.src = src;
+        }
+        openGift();
+      });
+    });
+  })();
+
   // PAGE NAVIGATION
   function showPage(pageId) {
-    ['page1', 'page2', 'page3'].forEach(pid => {
+    ['page2'].forEach(pid => {
       const el = document.getElementById(pid);
       if (el) el.classList.remove('active-page');
     });
@@ -318,7 +285,7 @@
   document.querySelectorAll('.page-btn').forEach(btn => {
     btn.addEventListener('click', () => { const pageId = btn.getAttribute('data-page'); if (pageId) showPage(pageId); });
   });
-  showPage('page1');
+  showPage('page2');
 </script>
 </body>
 </html>

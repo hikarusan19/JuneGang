@@ -239,6 +239,10 @@
         passInput.disabled = true;
         // Subtle delay for visual confirmation before redirect
         setTimeout(() => {
+          // If the target is Ezra's page, request background music play after redirect
+          if (target.includes('Ezra')) {
+            try { sessionStorage.setItem('playBg', '1'); } catch (e) {}
+          }
           window.location.href = target;
         }, 600);
       } else {
