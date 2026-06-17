@@ -30,12 +30,23 @@
 <!-- gift video modal -->
 <div id="giftVideoModal" class="gift-modal">
   <div class="gift-container">
-    <button id="closeVideoBtn" style="float:right; background:none; border:none; font-size:1.5rem; cursor:pointer;">✕</button>
+    <button id="closeVideoBtn" class="video-close-btn" aria-label="Close video modal">✕</button>
     <h3 style="color:#e55a8a;">🎁 Your Birthday Gift 🎁</h3>
     <video id="giftVideoPlayer" controls preload="metadata">
-      <source src="./SpecialMessage/18egg.mp4" type="video/mp4">
+      <source src="./SpecialMessage/Specialmessage.mp4" type="video/mp4">
     </video>
-    <p style="color:#b34c78;">💝 Special video for you, Erica! 💝</p>
+    <button id="openVideoMessageBtn" class="message-popup-btn">✉️ Open Message</button>
+    <p style="color:#b34c78;">💝 Special video for you, Mahal! 💝</p>
+  </div>
+</div>
+
+<div id="videoMessagePopup" class="video-message-popup" aria-hidden="true">
+  <div class="video-message-card">
+    <button id="closeVideoMessageBtn" class="close-message-btn">✕</button>
+    <div class="video-message-title">💌 Mahal na Mensahe</div>
+    <p>Happy Birthday Mahal! 🎉❤️</p>
+    <p>Sa espesyal na araw na ito, nais kong ipaalam kung gaano kita kamahal at pinahahalagahan. Salamat sa iyong pagmamahal, pag-aalaga, at pagiging aking katuwang sa bawat yugto ng buhay. Nawa'y mapuno ng saya, kalusugan, tagumpay, at maraming biyaya ang iyong bagong taon. Hiling ko na matupad ang lahat ng iyong mga pangarap at hangarin. Mahal na mahal kita.</p>
+    <p>Maligayang kaarawan, aking pinakamamahal na asawa!</p>
   </div>
 </div>
 
@@ -59,7 +70,7 @@
   <div class="hero-modern">
     <div class="floating-icon">🌸🎂🌸</div>
     <h1> 🎀 HAPPY BIRTHDAY 🎀<br> ERICA AGUIRRE FRANCISCO </h1>
-    <div class="hero-sub">✨ You deserve all the sparkle in the world ✨<br> A day made of love, laughter and sweet surprises.</div>
+    <div class="hero-sub">🎉✨ Happy 30th Birthday, Boss Rika! May your day be as beautiful, thoughtful, and wonderful as you are. ✨💖🎉</div>
   </div>
 
   <!-- surprise ready card (new design) -->
@@ -75,10 +86,32 @@
   <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap:wrap;">
     <h2 style="color:#c84c78; font-weight:600;">📸 birthday snapshots</h2>
   </div>
-  <div class="gallery-grid">
-    <div class="gallery-item"><img src="Image/Day_6.jpg" alt="Day_6" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">Day_6</div></div>
-    <div class="gallery-item"><img src="Image/day9.jpg" alt="day9" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">day9</div></div>
-    <div class="gallery-item"><img src="Image/day8.jpg" alt="day8" style="width:100%; height:260px; object-fit:cover;"><div class="gallery-caption">day8</div></div>
+  <div class="gallery-grid gallery-5col">
+    <div class="gallery-item">
+      <img src="Image/specialPic/First.jpg" alt="First">
+      <div class="gallery-caption">🥰 Our First Day</div>
+      <button class="gallery-message-btn" data-photo="1">💌 Story</button>
+    </div>
+    <div class="gallery-item">
+      <img src="Image/specialPic/Second.jpg" alt="Second">
+      <div class="gallery-caption">💍 The Proposal</div>
+      <button class="gallery-message-btn" data-photo="2">💌 Story</button>
+    </div>
+    <div class="gallery-item">
+      <img src="Image/specialPic/Third.jpg" alt="Third">
+      <div class="gallery-caption">👰 Our Wedding Day</div>
+      <button class="gallery-message-btn" data-photo="3">💌 Story</button>
+    </div>
+    <div class="gallery-item">
+      <img src="Image/specialPic/Fourth.jpg" alt="Fourth">
+      <div class="gallery-caption">👶 New Blessings</div>
+      <button class="gallery-message-btn" data-photo="4">💌 Story</button>
+    </div>
+    <div class="gallery-item">
+      <img src="Image/specialPic/Fifth.jpg" alt="Fifth">
+      <div class="gallery-caption">🤰 Growing Our Family</div>
+      <button class="gallery-message-btn" data-photo="5">💌 Story</button>
+    </div>
   </div>
 
   <!-- modern tab bar -->
@@ -123,6 +156,14 @@
 
 </main>
 
+<div id="photoMessageModal" class="photo-message-modal" aria-hidden="true">
+  <div class="photo-message-card">
+    <button id="closePhotoMessageBtn" class="close-photo-message">✕</button>
+    <div class="photo-message-title" id="photoMessageTitle"></div>
+    <p id="photoMessageText" class="photo-message-text"></p>
+  </div>
+</div>
+
 <!-- Image Lightbox Modal -->
 <div id="imageModal" class="image-modal" aria-hidden="true">
   <div class="image-modal-content">
@@ -133,17 +174,107 @@
 </div>
 
 <script>
-  // --- WISHES DATA (same messages for Erica) ---
-  const wishesErica = [
-    { name: "👩‍👧 Mom", message: "Happy Birthday, my precious Erica! You are my sunshine, my joy, and my everything. May your life be as beautiful as your smile. I love you endlessly! 💖", signature: "— Love, Mom" },
-    { name: "👨‍👦 Dad", message: "To my beautiful daughter Erica, Happy Birthday! Watching you grow into the amazing woman you are today fills my heart with pride. Keep shining bright! 🎉", signature: "— Dad" },
-    { name: "👧 Sister", message: "Happy Birthday to the best sister in the world! Thanks for all the laughs, secrets, and late-night talks. You're my role model and best friend! 🎀✨", signature: "— Your sis" },
-    { name: "👴 Grandpa", message: "Happy Birthday, sweet Erica! You bring so much light into our family. May your days be filled with happiness and your heart with love. 🎈", signature: "— Grandpa" },
-    { name: "👵 Grandma", message: "To my darling granddaughter, sending you the warmest hugs and sweetest kisses on your birthday. May God bless you abundantly! 💕", signature: "— Grandma" },
-    { name: "🧑‍🤝‍🧑 Best Friend", message: "Erica! Happy Birthday, bestie! Thank you for being the most amazing friend anyone could ask for. Let's make this year unforgettable! 👯‍♀️🔥", signature: "— Your BFF" },
-    { name: "👩‍🎨 Friend", message: "Happy Birthday, gorgeous! You light up every room you enter. Wishing you nothing but success, love, and happiness today and always! 🌟", signature: "— Your friend" }
-  ];
+  // --- PHOTO STORY MESSAGES ---
+  const photoMessages = {
+    1: {
+      title: "🥰 Our First Day",
+      text: "Eto yung unang araw na naging mag GF / BF tayo, super saya ko nun kasi akalain mo meron pa palang taong tatagal sakin ng buo char. alam mo yun galing din ako sa mga bigong mga pag ibig. pero eto ka. binuksan mo ulit ang pinto. hahaha."
+    },
+    2: {
+      title: "💍 The Proposal",
+      text: "Proposal na wala kanang takas hahaha. kasi walakang kakampi nung panahon na yan kaya di kana Makatanggi. syempre. nag yes ka. wala ng attrasan to. akin kana. hahaha"
+    },
+    3: {
+      title: "👰 Our Wedding Day",
+      text: "Eto na ang Sakalan, Este Kasalan na walang takasan. eto na yun pinaka masayang part ng buhay natin. kasi isang beses lang tong mangyari sa buhay natin. kaya laking pasalamat ko sa panginoon at binigyan nya tayo ng ganito moment."
+    },
+    4: {
+      title: "👶 New Blessings",
+      text: "Ang pag bukas ng isa nanaman chapter sa buo natin at yun ang pag dating ni riko mateo ( a.k.a matmat ) super blessing ang nangyari nung dumating sya. may bagong work. si mahal. may bagong motor ako. at may Nakuha pa tayong bahay sa bulacan. kaya super bless tayo dito."
+    },
+    5: {
+      title: "🤰 Growing Our Family",
+      text: "At eto ang pinaka bagong mangyayari satin, madadag dagan na tayo ng isa pa. boy or girl ano kaya eto? kahit ano pa sya. maluwag sa loob dapat ang pag tanggap natin sa kanya. masaya ako na  nabubuo na natin yung masayang pamilya na gusto natin mangyari sa buhay natin"
+    }
+  };
 
+  const photoMessageModal = document.getElementById('photoMessageModal');
+  const photoMessageTitle = document.getElementById('photoMessageTitle');
+  const photoMessageText = document.getElementById('photoMessageText');
+  const closePhotoMessageBtn = document.getElementById('closePhotoMessageBtn');
+
+  function openPhotoMessage(photoNum) {
+    const msg = photoMessages[photoNum];
+    if (msg) {
+      photoMessageTitle.textContent = msg.title;
+      photoMessageText.textContent = msg.text;
+      photoMessageModal.classList.add('active');
+      photoMessageModal.setAttribute('aria-hidden', 'false');
+    }
+  }
+
+  function closePhotoMessage() {
+    photoMessageModal.classList.remove('active');
+    photoMessageModal.setAttribute('aria-hidden', 'true');
+  }
+
+  document.querySelectorAll('.gallery-message-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const photoNum = parseInt(btn.getAttribute('data-photo'));
+      openPhotoMessage(photoNum);
+    });
+  });
+
+  closePhotoMessageBtn.addEventListener('click', closePhotoMessage);
+  photoMessageModal.addEventListener('click', (e) => {
+    if (e.target === photoMessageModal) closePhotoMessage();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && photoMessageModal.classList.contains('active')) closePhotoMessage();
+  });
+
+  // --- WISHES DATA ---
+  const wishesErica = [
+    {
+      name: "Ate Kimmy",
+      message: `
+        <p>Happy Birthday Erica. Congrats trente ka na. Ang laki mo na (literally, ay).</p>
+        <p>I will always be thankful sa mga nagawa mo sa mga kapatid natin na di ko nagawa. Pinanindigan mo na talaga na maging panganay. I’m so proud of you.</p>
+        <p>Sa lahat ng naachieve mo, sa lahat ng nagagawa mo. Kay mutmut na lang ako babawi pag nagkataon since nairaos mo na ung mga kapatid natin.</p>
+        <p>Salamat sa pag alaga din kay Arcy at pagturing sa kaniya na parang anak mo din, nakakakampante ng kalooban.</p>
+        <p>Sa pagsuporta mo sa mga trip ko, salamat din. More trip pa in the future.</p>
+        <p>Kahit lumaki tayo sa broken family, pinaparamdam mo naman sa bawat isa na we, siblings got each others back and that’s more than enough to go on with this life and enjoy.</p>
+        <p>I really wish for your happiness at kung ano pa bang di mo pa nakukuha, alam ko namang makukuha mo un. Trenta ka na kaya make the most of it.</p>
+        <p>Maging healthy kau ni baby number 2. Maggrow kau together ng hubby mo together with mutmut.</p>
+        <p>Basta wag na wag mong kakalimutan si Lord. Lagi Siyang isama sa bawat yugto ng buhay mo.</p>
+      `,
+      signature: "— Ate Kimmy"
+    },
+    {
+      name: "Aries",
+      message: `
+        <p>Hi Manghud Rika Mae Salongga the III HAHAHAHHAHAHHAAHAHAH</p>
+        <p>Bye. aw. . Bitaw, nakahinumdom pa japon ko una tamo nakit-an sa daplin sa dalan. luoy ka-ayo maong gihatagan nakog pagkaon. charess HAHAHAHHAHHAHHAAH. De, nong sa GPQC anniv sympre na nagperform kayo. Tho I can't remember well who added who sa fb, ako yata? XD but I still remember supporting your gigs and performances on stage.</p>
+        <p>Mapa Idol performance</p>
+        <img src="Image/KuyaAries/First.png" alt="First" class="wish-img">
+        <p>or with Durungawan</p>
+        <img src="Image/KuyaAries/Second.png" alt="Second" class="wish-img">
+        <p>and so I also gave you a surprise gift. pero SUPER SORRY KAY WALAY FRAME HAHAHAHAHAHAHAAH</p>
+        <img src="Image/KuyaAries/Seventh.png" alt="Seventh" class="wish-img">
+        <p>Mas naging close pa tayo as time went by. Til I get to spend my holidays with ya'll</p>
+        <img src="Image/KuyaAries/Third.png" alt="Third" class="wish-img">
+        <p>I couldn't complain bisag banha kaayo ka HAHAHAHAHAHAHAHAHHAHAHAA . . Kanumdom pud ko, murag nangluod ka gamay kay d kaayo ko tig selpie nimo HAHAHAHAHAHAHAHAHHAA. Then we took this</p>
+        <img src="Image/KuyaAries/Fourth.png" alt="Fourth" class="wish-img">
+        <p>imbis Nezuko, NASUKO man nuon HAHAHAHAHAHAHHAAHA. but sorry, I don't get to ask for a photo sometimes. sa tinuod lang, maulaw ko usahay. HAHAHAHAHAHAHAHAH</p>
+        <p>until, you tied the know with ebs</p>
+        <img src="Image/KuyaAries/Fifth.png" alt="Fifth" class="wish-img">
+        <p>so yah, I just wanted to say I'm happy you considered me as your kuya bisag bugo kaayo ko HAHAHAHAHAHAHAHAHHAHappy Birthday So much my manghud!! I never told you but, Labyuuuuu XD 😛</p>
+        <img src="Image/KuyaAries/sixth.png" alt="sixth" class="wish-img">
+        <p>I know I've been away for so long. Laag ra ko puhon, or laag tas gawas biiii. XD Amping mo kanunay! Congratssss sa upcoming manghud ni Mat2</p>
+      `,
+      signature: "— Aries"
+    }
+  ];
   const wishesContainer = document.getElementById('wishesDynamic');
   function renderWishes() {
     wishesContainer.innerHTML = '';
@@ -171,7 +302,7 @@
   function openEnvelopeModal(index) {
     const w = wishesErica[index];
     modalName.innerText = w.name;
-    modalMsg.innerText = w.message;
+    modalMsg.innerHTML = w.message || '';
     modalSig.innerText = w.signature;
     envelopeModal.classList.add('active');
   }
@@ -194,29 +325,54 @@
   startMusic();
   document.body.addEventListener('click', function initAudio() { if(!isPlaying) startMusic(); }, { once: true });
 
-  // gift / video modal with lower bg music volume
+  // gift / video modal should pause background music while the video plays
   const giftModal = document.getElementById('giftVideoModal');
   const openGift = document.getElementById('openGiftBtn');
   const closeVideo = document.getElementById('closeVideoBtn');
   const giftVideo = document.getElementById('giftVideoPlayer');
-  let originalVol = audio.volume;
-  let volLowered = false;
-  function lowerVolume() { if(!volLowered) { originalVol = audio.volume; audio.volume = 0.12; volLowered = true; } }
-  function restoreVolume() { if(volLowered) { audio.volume = originalVol; volLowered = false; } }
+  let musicWasPlayingBeforeVideo = false;
+  function pauseMusicForVideo() {
+    musicWasPlayingBeforeVideo = isPlaying;
+    if (isPlaying) {
+      pauseMusic();
+    }
+  }
+  function restoreMusicAfterVideo() {
+    if (musicWasPlayingBeforeVideo) {
+      startMusic();
+    }
+  }
   function showGift() {
-    lowerVolume();
     giftModal.classList.add('active');
-    giftVideo.play().catch(e=>console.log);
+    pauseMusicForVideo();
+    giftVideo.play().catch(e => console.log(e));
   }
   function closeGiftModal() {
     giftModal.classList.remove('active');
-    giftVideo.pause(); giftVideo.currentTime = 0;
-    restoreVolume();
+    giftVideo.pause();
+    giftVideo.currentTime = 0;
+    restoreMusicAfterVideo();
   }
   openGift.addEventListener('click', showGift);
   closeVideo.addEventListener('click', closeGiftModal);
-  giftModal.addEventListener('click', (e) => { if(e.target === giftModal) closeGiftModal(); });
-  giftVideo.addEventListener('ended', () => restoreVolume());
+  giftModal.addEventListener('click', (e) => { if (e.target === giftModal) closeGiftModal(); });
+  giftVideo.addEventListener('ended', restoreMusicAfterVideo);
+
+  const openVideoMessageBtn = document.getElementById('openVideoMessageBtn');
+  const videoMessagePopup = document.getElementById('videoMessagePopup');
+  const closeVideoMessageBtn = document.getElementById('closeVideoMessageBtn');
+  function openVideoMessagePopup() {
+    videoMessagePopup.classList.add('active');
+    videoMessagePopup.setAttribute('aria-hidden', 'false');
+  }
+  function closeVideoMessagePopup() {
+    videoMessagePopup.classList.remove('active');
+    videoMessagePopup.setAttribute('aria-hidden', 'true');
+  }
+  openVideoMessageBtn.addEventListener('click', openVideoMessagePopup);
+  closeVideoMessageBtn.addEventListener('click', closeVideoMessagePopup);
+  videoMessagePopup.addEventListener('click', (e) => { if (e.target === videoMessagePopup) closeVideoMessagePopup(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && videoMessagePopup.classList.contains('active')) closeVideoMessagePopup(); });
 
   // confetti effect (soft)
   function createSoftConfetti() {
@@ -284,7 +440,7 @@
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', (e) => {
       const src = img.getAttribute('src');
-      const caption = img.getAttribute('alt') || img.closest('.gallery-item')?.querySelector('.gallery-caption')?.textContent || '';
+      const caption = img.closest('.gallery-item')?.querySelector('.gallery-caption')?.textContent || img.getAttribute('alt') || '';
       openImageModal(src, caption);
     });
   });
